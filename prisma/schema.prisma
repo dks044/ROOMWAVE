@@ -12,3 +12,36 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id      String    @id     @default(uuid())
+  email   String    @unique
+  name    String?
+  image   String?
+  desc    String?   //설명
+  rooms   Room[]
+
+}
+
+//룸 (스터디룸, 파티룸, 비엔비룸 등)
+model Room {
+  id                Int         @id @default(autoincrement())
+  title             String
+  images            String[]
+  address           String
+  lat               String                        //위도
+  lng               String                        //경도
+  category          String
+  desc              String
+  price             Int
+  bedroomDesc       String?                       //숙박가능여부
+  freeCancel        Boolean     @default(false)   //무료취소
+  officeSpace       Boolean     @default(false)   //사무시설
+  hasShower         Boolean     @default(false)   //샴푸 및 욕실 용품
+  hasAirCondition   Boolean     @default(false)   //에어컨
+  hasWifi           Boolean     @default(false)   //와이파이
+  hasFreeParking    Boolean     @default(false)   //무료주차
+  userId            String
+  user          User        @relation(fields: [userId],references: [id], onDelete: Cascade)
+  @@index([userId])
+}
