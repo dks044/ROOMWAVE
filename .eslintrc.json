@@ -6,7 +6,7 @@
   ],
   "plugins": ["prettier", "react", "react-hooks"],
   "rules": {
-    "prettier/prettier": "error",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "react-hooks/rules-of-hooks": "warn",
     "react/display-name": "warn",
     "react/react-in-jsx-scope": "off"
