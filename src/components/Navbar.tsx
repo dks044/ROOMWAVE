@@ -16,7 +16,7 @@ const Navbar = () => {
     <nav className="h-20 border border-b-gray-200 w-full shadow-sm p-4 sm:px-10 flex justify-between items-center fixed top-0 bg-white">
       <div className="grow basis-0 hidden my-auto font-semibold text-lg sm:text-xl text-brand cursor-pointer sm:flex sm:gap-2">
         <GiWaves className="text-2xl my-auto" />
-        <div className="my-auto">STUDYWAVE</div>
+        <div className="my-auto">ROOMWAVE</div>
       </div>
       <div className="w-full h-10 sm:w-[290px] border border-gray-200 rounded-full shadow hover:shadow-lg cursor-pointer flex justify-between pl-6 pr-2">
         <div className="flex justify-center gap-1">

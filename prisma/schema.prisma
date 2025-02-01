@@ -41,7 +41,7 @@ model Room {
   hasAirCondition   Boolean     @default(false)   //에어컨
   hasWifi           Boolean     @default(false)   //와이파이
   hasFreeParking    Boolean     @default(false)   //무료주차
-  userId            String
-  user          User        @relation(fields: [userId],references: [id], onDelete: Cascade)
+  userId            String?
+  user              User?        @relation(fields: [userId],references: [id], onDelete: Cascade)
   @@index([userId])
 }
