@@ -133,7 +133,7 @@ function getRandomLongtitude() {
 }
 
 async function main() {
-  //await seedUsers()
+  await seedUsers()
   await seedRooms()
 }
 

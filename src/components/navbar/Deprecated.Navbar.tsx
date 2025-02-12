@@ -7,23 +7,10 @@ import { HiOutlineMenu } from 'react-icons/hi'
 import { AiOutlineUser } from 'react-icons/ai'
 import useNavigation from '@/hooks/useNavigation'
 import cn from 'classnames'
+import { DetailFilterType, FilterProps } from '@/types/filter'
 
-// 필터
-export type DetailFilterType =
-  | 'location'
-  | 'checkIn'
-  | 'checkOut'
-  | 'hourlyPrice'
-  | 'guest'
-export interface FilterProps {
-  location: string //위치
-  checkIn: string //체크인
-  checkOut: string //체크아웃
-  hourlyPrice: number //시간당 가격
-  guest: number //참석자(게스트)
-}
-
-const Navbar = () => {
+/** @info Modal을 활용하는 Navbar (현재 사용중지)*/
+const PrevNavbar = () => {
   const { menus, router } = useNavigation()
   const [showMenu, setShowMenu] = useState<boolean>(false)
   const [showFilter, setShowFilter] = useState<boolean>(false)
@@ -121,14 +108,13 @@ const Navbar = () => {
                   <div className="text-gray-500 text-xs">
                     {filterValue?.location || '위치 검색'}
                   </div>
-                  <button
+                  <span
                     role="저는 버튼 옆에 검색버튼입니다."
-                    type="button"
                     className="flex bg-brand text-white rounded-full h-10 mx-4 sm:w-24 my-auto md:hidden justify-center gap-1 px-3 py-2 hover:bg-subBrand transition absolute right-0 top-1"
                   >
                     <AiOutlineSearch className="font-semibold text-xl my-auto" />
                     <div className="my-auto">검색</div>
-                  </button>
+                  </span>
                 </button>
                 <button
                   type="button"
@@ -144,14 +130,13 @@ const Navbar = () => {
                   <div className="text-gray-500 text-xs">
                     {filterValue?.checkIn || '체크인'}
                   </div>
-                  <button
+                  <span
                     role="저는 버튼 옆에 검색버튼입니다."
-                    type="button"
                     className="flex bg-brand text-white rounded-full h-10 mx-4 sm:w-24 my-auto md:hidden justify-center gap-1 px-3 py-2 hover:bg-subBrand transition absolute right-0 top-1"
                   >
                     <AiOutlineSearch className="font-semibold text-xl my-auto" />
                     <div className="my-auto">검색</div>
-                  </button>
+                  </span>
                 </button>
                 <button
                   type="button"
@@ -167,14 +152,13 @@ const Navbar = () => {
                   <div className="text-gray-500 text-xs">
                     {filterValue?.checkOut || '체크아웃'}
                   </div>
-                  <button
+                  <span
                     role="저는 버튼 옆에 검색버튼입니다."
-                    type="button"
                     className="flex bg-brand text-white rounded-full h-10 mx-4 sm:w-24 my-auto md:hidden justify-center gap-1 px-3 py-2 hover:bg-subBrand transition absolute right-0 top-1"
                   >
                     <AiOutlineSearch className="font-semibold text-xl my-auto" />
                     <div className="my-auto">검색</div>
-                  </button>
+                  </span>
                 </button>
                 <button
                   type="button"
@@ -190,14 +174,13 @@ const Navbar = () => {
                   <div className="text-gray-500 text-xs">
                     {filterValue?.hourlyPrice || '가격'}
                   </div>
-                  <button
+                  <span
                     role="저는 버튼 옆에 검색버튼입니다."
-                    type="button"
                     className="flex bg-brand text-white rounded-full h-10 mx-4 sm:w-24 my-auto md:hidden justify-center gap-1 px-3 py-2 hover:bg-subBrand transition absolute right-0 top-1"
                   >
                     <AiOutlineSearch className="font-semibold text-xl my-auto" />
                     <div className="my-auto">검색</div>
-                  </button>
+                  </span>
                 </button>
                 <button
                   type="button"
@@ -213,14 +196,13 @@ const Navbar = () => {
                   <div className="text-gray-500 text-xs">
                     {filterValue?.guest || '참석자'}
                   </div>
-                  <button
+                  <span
                     role="저는 버튼 옆에 검색버튼입니다."
-                    type="button"
                     className="flex bg-brand text-white rounded-full h-10 mx-4 sm:w-24 my-auto md:hidden justify-center gap-1 px-3 py-2 hover:bg-subBrand transition absolute right-0 top-1"
                   >
                     <AiOutlineSearch className="font-semibold text-xl my-auto" />
                     <div className="my-auto">검색</div>
-                  </button>
+                  </span>
                 </button>
               </div>
               <button
@@ -276,4 +258,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default PrevNavbar
