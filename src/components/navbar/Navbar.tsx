@@ -1,32 +1,28 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import cn from 'classnames'
 import { RxDividerVertical } from 'react-icons/rx'
 import { AiOutlineSearch } from 'react-icons/ai'
-
 import { AiOutlineMenu } from 'react-icons/ai'
 import { AiOutlineUser } from 'react-icons/ai'
 import { GiWaves } from 'react-icons/gi'
-import { DetailFilterType, FilterProps } from '@/types/filter'
 import useNavigation from '@/hooks/useNavigation'
-import NavbarLocationFilter from './Navbar.Location.Filter'
+import NavbarFilter from './Navbar.Filter'
+import useNav from '@/hooks/useNav'
+import { formatNumber } from '@/util/util'
+import useFilterStore from '@/store/useFilterStore'
 
 export default function Navbar() {
+  const { showfilter, setShowfilter } = useFilterStore()
   const { menus, router } = useNavigation()
-  const [showMenu, setShowMenu] = useState<boolean>(false)
-  const [showfilter, setShowfilter] = useState<boolean>(false)
-  const [detailFilter, setDetailFilter] = useState<null | DetailFilterType>(
-    null,
-  )
-  const [filterValue, setFilterValue] = useState<FilterProps>({
-    location: '',
-    checkIn: '',
-    checkOut: '',
-    hourlyPrice: 0,
-    guest: 0,
-  })
+  const {
+    showMenu,
+    setShowMenu,
+    detailFilter,
+    setDetailFilter,
+    filterValue,
+    setFilterValue,
+  } = useNav()
 
   return (
     <nav
@@ -120,7 +116,7 @@ export default function Navbar() {
                 className={cn(
                   'font-semibold text-xs rounded-full transition hover:bg-gray-100 py-3 px-6 text-left',
                   {
-                    'shadow bg-white': detailFilter === 'location',
+                    'shadow bg-white': detailFilter === 'checkIn',
                   },
                 )}
               >
@@ -135,7 +131,7 @@ export default function Navbar() {
                 className={cn(
                   'font-semibold text-xs rounded-full transition hover:bg-gray-100 py-3 px-6 text-left',
                   {
-                    'shadow bg-white': detailFilter === 'location',
+                    'shadow bg-white': detailFilter === 'checkOut',
                   },
                 )}
               >
@@ -150,13 +146,13 @@ export default function Navbar() {
                 className={cn(
                   'font-semibold text-xs rounded-full transition hover:bg-gray-100 py-3 px-6 text-left',
                   {
-                    'shadow bg-white': detailFilter === 'location',
+                    'shadow bg-white': detailFilter === 'hourlyPrice',
                   },
                 )}
               >
                 가격
                 <div className="text-gray-500 text-xs mt-1">
-                  {filterValue?.hourlyPrice || '가격 검색'}
+                  {formatNumber(filterValue?.hourlyPrice) || '가격 검색'}
                 </div>
               </button>
               <button
@@ -165,17 +161,18 @@ export default function Navbar() {
                 className={cn(
                   'font-semibold text-xs rounded-full transition hover:bg-gray-100 py-3 px-6 text-left',
                   {
-                    'shadow bg-white': detailFilter === 'location',
+                    'shadow bg-white': detailFilter === 'guest',
                   },
                 )}
               >
                 참석자
                 <div className="text-gray-500 text-xs mt-1">
-                  {filterValue?.guest || '게스트 추가'}
+                  {`${filterValue?.guest}명` || '게스트 추가'}
                 </div>
               </button>
-              {detailFilter === 'location' && (
-                <NavbarLocationFilter
+              {detailFilter && (
+                <NavbarFilter
+                  detailFilter={detailFilter}
                   filterValue={filterValue}
                   setFilterValue={setFilterValue}
                   setDetailFilter={setDetailFilter}
