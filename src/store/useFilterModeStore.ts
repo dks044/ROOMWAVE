@@ -6,7 +6,7 @@ interface UseFilterState {
   setShowfilter: (value: boolean) => void
 }
 
-const useFilterStore = create<UseFilterState>()(
+const useFilterModeStore = create<UseFilterState>()(
   persist(
     (set) => ({
       showfilter: false,
@@ -18,4 +18,4 @@ const useFilterStore = create<UseFilterState>()(
   ),
 )
 
-export default useFilterStore
+export default useFilterModeStore

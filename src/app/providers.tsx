@@ -1,7 +1,7 @@
 'use client'
 import Footer from '@/components/Footer'
 import Navbar from '@/components/navbar/Navbar'
-import useFilterStore from '@/store/useFilterStore'
+import useFilterModeStore from '@/store/useFilterModeStore'
 import React, { useEffect, useRef } from 'react'
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const NextLayout = ({ children }: Props) => {
-  const { setShowfilter } = useFilterStore()
+  const { setShowfilter } = useFilterModeStore()
   const navbarRef = useRef<HTMLDivElement>(null) // Navbar를 감싸는 ref 생성
 
   /**

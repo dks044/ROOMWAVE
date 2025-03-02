@@ -1,36 +1,20 @@
-import { DetailFilterType, FilterProps } from '@/types/filter'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import cn from 'classnames'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ko'
 import useNavFilter from '@/hooks/useNavFilter'
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai'
 import Calendar from 'react-calendar'
+import useFilterStore from '@/store/useFilterStroe'
+import { FILTER_TITLE, LOCATION_CITIES } from '@/const/filter'
 
-interface FilterComponentProps {
-  detailFilter: DetailFilterType
-  filterValue: FilterProps
-  setFilterValue: React.Dispatch<React.SetStateAction<FilterProps>>
-  setDetailFilter: React.Dispatch<React.SetStateAction<DetailFilterType | null>>
-}
 /**
  * @info Navbar 필터 (ROOM 검색용도)
- * @param detailFilter   : 필터의 상태(ex: 지역, 게스트, ...)
- * @param filterValue    : 필터(Object)의 값
- * @param setFilterValue
- * @param setDetailFilter
- *
  */
-const NavbarFilter = ({
-  detailFilter,
-  filterValue,
-  setFilterValue,
-  setDetailFilter,
-}: FilterComponentProps) => {
-  const { isCheckIn, counter, setCounter } = useNavFilter(
-    detailFilter,
-    filterValue,
-  )
+const NavbarFilter = () => {
+  const { setFilterValue, setDetailFilter, filterValue, detailFilter } =
+    useFilterStore()
+  const { isCheckIn } = useNavFilter()
 
   /**
    * @info 캘린더 상태할당 함수(onChange)
@@ -45,40 +29,37 @@ const NavbarFilter = ({
 
   return (
     <div className="absolute top-[341] sm:top-[70px] border border-gray-200 px-8 py-6 flex flex-col bg-white w-full mx-auto inset-x-0 sm:max-w-3xl sm:w-[780px] rounded-xl left-0">
-      <div className="text-sm font-semibold">
-        {detailFilter === 'location' && '지역으로 검색하기'}
-        {detailFilter === 'checkIn' && '체크인 날짜 설정하기'}
-        {detailFilter === 'checkOut' && '체크아웃 날짜 설정하기'}
-        {detailFilter === 'hourlyPrice' && '가격(시간당)으로 알아보기'}
-        {detailFilter === 'guest' && '게스트 추가하기'}
+      <div className="text-sm font-semibold flex justify-between">
+        {/* 필터 제목 */}
+        {FILTER_TITLE[detailFilter as keyof typeof FILTER_TITLE]}
       </div>
+      {/* 현재 상세 디테일이 '위치' 일 경우 */}
       {detailFilter === 'location' && (
         <div className="flex flex-wrap gap-4 mt-4">
-          {['서울', '부산', '대구', '인천', '울산', '광주', '대전']?.map(
-            (value) => (
-              <button
-                key={value}
-                type="button"
-                className={cn(
-                  'border rounded-lg px-5 py-2.5 hover:bg-gray-200 focus:bg-subBrand transition',
-                  {
-                    'bg-brand text-white': filterValue.location === value,
-                  },
-                )}
-                onClick={() => {
-                  setFilterValue({
-                    ...filterValue,
-                    location: value,
-                  })
-                  setDetailFilter('checkIn')
-                }}
-              >
-                {value}
-              </button>
-            ),
-          )}
+          {LOCATION_CITIES.map((value) => (
+            <button
+              key={value}
+              type="button"
+              className={cn(
+                'border rounded-lg px-5 py-2.5 hover:bg-gray-200 focus:bg-subBrand transition',
+                {
+                  'bg-brand text-white': filterValue.location === value,
+                },
+              )}
+              onClick={() => {
+                setFilterValue({
+                  ...filterValue,
+                  location: value,
+                })
+                setDetailFilter('checkIn')
+              }}
+            >
+              {value}
+            </button>
+          ))}
         </div>
       )}
+      {/* 현재 상세 디테일이 '체크인' 이거나 '체크아웃' 일 경우 */}
       {(detailFilter === 'checkIn' || detailFilter === 'checkOut') && (
         <Calendar
           className="mt-8 mx-auto"
@@ -98,6 +79,7 @@ const NavbarFilter = ({
           formatDay={(locale, date) => dayjs(date).format('DD')}
         />
       )}
+      {/* 현재 상세 디테일이 가격 일 경우 */}
       {detailFilter === 'hourlyPrice' && (
         <>
           <div className="mt-4 border border-gray-200 rounded-md w-full flex justify-between py-2 pl-4 pr-6 relative">
@@ -121,6 +103,7 @@ const NavbarFilter = ({
           </div>
         </>
       )}
+      {/* 현재 상세 디테일이 게스트일 경우 */}
       {detailFilter === 'guest' && (
         <>
           <div className="mt-4 border border-gray-200 py-2 px-4 rounded-lg flex justify-between items-center ">
@@ -134,28 +117,37 @@ const NavbarFilter = ({
             <div className="flex gap-4 items-center justify-center">
               <button
                 type="button"
-                disabled={counter <= 0}
-                className="rounded-full  w-8 h-8 hover:border-black transition disabled:border-gray-200"
-                onClick={(e) => {
-                  setCounter((val) => val - 1)
-                  setFilterValue({ ...filterValue, guest: counter + 1 })
+                disabled={filterValue?.guest <= 0}
+                className="rounded-full w-8 h-8 hover:border-black transition disabled:border-gray-200"
+                onClick={() => {
+                  setFilterValue({
+                    ...filterValue,
+                    guest: filterValue.guest - 1,
+                  })
                 }}
               >
                 <AiOutlineMinusCircle
-                  className={cn('m-auto', { 'text-gray-200': counter <= 0 })}
+                  className={cn('m-auto', {
+                    'text-gray-200': filterValue?.guest <= 0,
+                  })}
                 />
               </button>
-              <div>{counter}</div>
+              <div>{filterValue?.guest}</div>
               <button
                 type="button"
-                disabled={counter >= 20}
-                className="rounded-full  w-8 h-8 hover:border-black transition disabled:border-gray-200"
+                disabled={filterValue?.guest >= 20}
+                className="rounded-full w-8 h-8 hover:border-black transition disabled:border-gray-200"
                 onClick={() => {
-                  setCounter((val) => val + 1)
+                  setFilterValue({
+                    ...filterValue,
+                    guest: filterValue.guest + 1,
+                  })
                 }}
               >
                 <AiOutlinePlusCircle
-                  className={cn('m-auto', { 'text-gray-200': counter >= 20 })}
+                  className={cn('m-auto', {
+                    'text-gray-200': filterValue.guest >= 20,
+                  })}
                 />
               </button>
             </div>

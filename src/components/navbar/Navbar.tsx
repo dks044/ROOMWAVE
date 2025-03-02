@@ -10,19 +10,15 @@ import useNavigation from '@/hooks/useNavigation'
 import NavbarFilter from './Navbar.Filter'
 import useNav from '@/hooks/useNav'
 import { formatNumber } from '@/util/util'
-import useFilterStore from '@/store/useFilterStore'
+import useFilterModeStore from '@/store/useFilterModeStore'
+import useFilterStore from '@/store/useFilterStroe'
 
 export default function Navbar() {
-  const { showfilter, setShowfilter } = useFilterStore()
+  const { showfilter, setShowfilter } = useFilterModeStore()
   const { menus, router } = useNavigation()
-  const {
-    showMenu,
-    setShowMenu,
-    detailFilter,
-    setDetailFilter,
-    filterValue,
-    setFilterValue,
-  } = useNav()
+  const { showMenu, setShowMenu } = useNav()
+  const { detailFilter, filterValue, setDetailFilter, isJustOneDay } =
+    useFilterStore()
 
   return (
     <nav
@@ -129,15 +125,20 @@ export default function Navbar() {
                 type="button"
                 onClick={() => setDetailFilter('checkOut')}
                 className={cn(
-                  'font-semibold text-xs rounded-full transition hover:bg-gray-100 py-3 px-6 text-left',
+                  'font-semibold text-xs rounded-full transition hover:bg-gray-100 py-3 px-6 text-left disabled:cursor-not-allowed',
                   {
                     'shadow bg-white': detailFilter === 'checkOut',
                   },
                 )}
+                disabled={isJustOneDay}
               >
                 체크아웃
                 <div className="text-gray-500 text-xs mt-1">
-                  {filterValue?.checkOut || '날짜 추가'}
+                  {isJustOneDay
+                    ? '당일'
+                    : filterValue?.checkOut
+                      ? filterValue.checkOut
+                      : '날짜 추가'}
                 </div>
               </button>
               <button
@@ -170,14 +171,7 @@ export default function Navbar() {
                   {`${filterValue?.guest}명` || '게스트 추가'}
                 </div>
               </button>
-              {detailFilter && (
-                <NavbarFilter
-                  detailFilter={detailFilter}
-                  filterValue={filterValue}
-                  setFilterValue={setFilterValue}
-                  setDetailFilter={setDetailFilter}
-                />
-              )}
+              {detailFilter && <NavbarFilter />}
             </div>
             <button
               type="button"
