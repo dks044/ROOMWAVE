@@ -5,8 +5,7 @@ import dayjs from 'dayjs'
 import 'dayjs/locale/ko'
 import useNavFilter from '@/hooks/useNavFilter'
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai'
-import PrevNavbar from './Deprecated.Navbar'
-import { formatNumber } from '@/util/util'
+import Calendar from 'react-calendar'
 
 interface FilterComponentProps {
   detailFilter: DetailFilterType
@@ -33,8 +32,19 @@ const NavbarFilter = ({
     filterValue,
   )
 
+  /**
+   * @info 캘린더 상태할당 함수(onChange)
+   */
+  const onChange = (e: any) => {
+    setFilterValue({
+      ...filterValue,
+      [isCheckIn ? 'checkIn' : 'checkOut']: dayjs(e).format('YYYY-MM-DD'),
+    })
+    setDetailFilter(isCheckIn ? 'checkIn' : 'checkOut')
+  }
+
   return (
-    <div className="absolute top-80 sm:top-[70px] border border-gray-200 px-8 py-10 flex flex-col bg-white w-full mx-auto inset-x-0 sm:max-w-3xl sm:w-[780px] rounded-xl left-0">
+    <div className="absolute top-[341] sm:top-[70px] border border-gray-200 px-8 py-6 flex flex-col bg-white w-full mx-auto inset-x-0 sm:max-w-3xl sm:w-[780px] rounded-xl left-0">
       <div className="text-sm font-semibold">
         {detailFilter === 'location' && '지역으로 검색하기'}
         {detailFilter === 'checkIn' && '체크인 날짜 설정하기'}
@@ -70,23 +80,22 @@ const NavbarFilter = ({
         </div>
       )}
       {(detailFilter === 'checkIn' || detailFilter === 'checkOut') && (
-        <input
-          type="date"
-          className="mt-4 border border-gray-200 py-3 px-2.5 rounded-lg"
-          defaultValue={isCheckIn ? filterValue.checkIn : filterValue.checkOut}
-          //체크인일 경우, 최솟값은 현재날짜 | 체크아웃의 최솟값은 체크인값
-          min={
+        <Calendar
+          className="mt-8 mx-auto"
+          onChange={onChange}
+          minDate={
             detailFilter === 'checkIn'
-              ? dayjs().format('YYYY-MM-DD')
-              : dayjs(filterValue.checkIn).add(1, 'day').format('YYYY-MM-DD')
+              ? dayjs().toDate()
+              : dayjs(filterValue.checkIn).add(1, 'day').toDate()
           }
-          onChange={(e) => {
-            setFilterValue({
-              ...filterValue,
-              [isCheckIn ? 'checkIn' : 'checkOut']: e.target.value,
-            })
-            setDetailFilter(isCheckIn ? 'checkIn' : 'checkOut')
-          }}
+          defaultValue={
+            isCheckIn
+              ? filterValue.checkIn
+              : !isCheckIn
+                ? filterValue.checkOut
+                : null
+          }
+          formatDay={(locale, date) => dayjs(date).format('DD')}
         />
       )}
       {detailFilter === 'hourlyPrice' && (
@@ -98,7 +107,7 @@ const NavbarFilter = ({
             </div>
             <input
               value={filterValue.hourlyPrice}
-              className="text-right"
+              className="w-3 sm:w-auto text-right"
               type="text"
               placeholder="ex) 30,000"
               onChange={(e) => {
@@ -117,7 +126,7 @@ const NavbarFilter = ({
           <div className="mt-4 border border-gray-200 py-2 px-4 rounded-lg flex justify-between items-center ">
             <div className="font-semibold text-sm">
               게스트 수 추가{' '}
-              <div className="text-gray-500 text-sm">
+              <div className="text-gray-500 text-xs">
                 참가 인원을 입력해주세요
               </div>
             </div>

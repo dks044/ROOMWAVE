@@ -152,7 +152,7 @@ export default function Navbar() {
               >
                 가격
                 <div className="text-gray-500 text-xs mt-1">
-                  {formatNumber(filterValue?.hourlyPrice) || '가격 검색'}
+                  {`${formatNumber(filterValue?.hourlyPrice)}원` || '가격 검색'}
                 </div>
               </button>
               <button
@@ -182,7 +182,7 @@ export default function Navbar() {
             <button
               type="button"
               role="button"
-              className="bg-brand text-white rounded-full h-10 mx-4 sm:w-24 my-auto flex justify-center gap-1 px-3 py-2
+              className="bg-brand mb-2 text-white rounded-full h-10 mx-4 sm:w-24 my-auto flex justify-center gap-1 px-3 py-2
               hover:shadow hover:bg-blue-800 transition"
               aria-label="필터, 디테일필터 초기화"
               onClick={() => {
