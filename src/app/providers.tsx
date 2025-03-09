@@ -1,6 +1,6 @@
 'use client'
 import Footer from '@/components/Footer'
-import Navbar from '@/components/navbar/Navbar'
+import Navbar from '@/components/Navber/Navbar'
 import useFilterModeStore from '@/store/useFilterModeStore'
 import React, { useEffect, useRef } from 'react'
 

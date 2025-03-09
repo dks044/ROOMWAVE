@@ -1,4 +1,4 @@
-import IsJustOneDayCheckBox from '@/components/navbar/Is-Just-One-Day-CheckBox'
+import IsJustOneDayCheckBox from '@/components/Navber/Is-Just-One-Day-CheckBox'
 
 /**@INFO 필터 제목 */
 export const FILTER_TITLE = {

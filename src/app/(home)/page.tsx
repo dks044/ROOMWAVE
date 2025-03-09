@@ -1,7 +1,7 @@
 import { getRooms } from '@/apis/room'
 import CategoryList from '@/components/CategoryList'
 import GridLayout from '@/components/GridLayout'
-import RoomItem from '@/components/room/RoomItem'
+import RoomItem from '@/components/RoomList'
 import { RoomType } from '@/types'
 import React from 'react'
 

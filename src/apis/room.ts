@@ -4,6 +4,7 @@ export async function getRooms() {
   })
 
   if (!res.ok) {
+    console.error('Fetch error:', await res.text())
     throw new Error('failed to fetch')
   }
 
