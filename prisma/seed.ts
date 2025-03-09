@@ -1,30 +1,6 @@
 import { fakerKO as faker } from '@faker-js/faker'
 import prisma from '../src/lib/prismadb'
-
-const CATEGORY = [
-  '파티룸',
-  '연습실',
-  '촬영스튜디오',
-  '스터디룸',
-  '공연장',
-  '공유주방',
-  '댄스연습실',
-  '렌탈스튜디오',
-  '회의실',
-  '라이브방송',
-  '보컬연습실',
-  '세미나실',
-  '컨퍼런스',
-  '스몰웨딩',
-  '악기연습실',
-  '실외촬영',
-  '강의실',
-  '운동시설',
-  '갤러리',
-  '녹음실',
-  '독립오피스',
-  '가정집',
-]
+import { CATEGORY } from '@/constants'
 
 async function seedUsers() {
   Array.from({ length: 10 }, (v, i) => i).forEach(async () => {

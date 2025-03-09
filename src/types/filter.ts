@@ -11,4 +11,5 @@ export interface FilterProps {
   checkOut: string //체크아웃
   hourlyPrice: number //시간당 가격
   guest: number //참석자(게스트)
+  category: string //카테고리
 }

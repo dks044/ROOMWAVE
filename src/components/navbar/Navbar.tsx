@@ -23,7 +23,7 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        ' border border-b-gray-20 w-full shadow-sm p-4 sm:px-10 flex justify-between items-center align-middle fixed top-0 bg-white',
+        'h-20 z-10 border border-b-gray-20 w-full shadow-sm p-4 sm:px-10 flex justify-between items-center align-middle fixed top-0 bg-white',
         {
           '!h-44': showfilter === true,
           '!items-start': showfilter === true,
@@ -31,7 +31,6 @@ export default function Navbar() {
       )}
     >
       <div className="grow basis-0 hidden font-semibold text-lg sm:text-xl text-brand cursor-pointer sm:flex sm:gap-2 ">
-        <GiWaves className="text-2xl" />
         <div className="">ROOMWAVE</div>
       </div>
       {showfilter === false ? (
@@ -55,7 +54,7 @@ export default function Navbar() {
           </button>
         </div>
       ) : (
-        <div className="sm:w-[340px] cursor-pointer w-full relative ">
+        <div className="sm:w-[340px] cursor-pointer w-full relative">
           <div className="flex justify-center gap-7 h-14 text-center items-center">
             <button
               type="button"

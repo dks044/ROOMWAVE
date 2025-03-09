@@ -21,6 +21,7 @@ const useFilterStore = create<FilterStoreInterface>()(
         checkOut: '',
         hourlyPrice: 0,
         guest: 0,
+        category: '',
       },
       isJustOneDay: false,
       setIsJustOneDay: (isJustOneDay: boolean) => {

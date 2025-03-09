@@ -6,7 +6,7 @@ import useNavFilter from '@/hooks/useNavFilter'
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai'
 import Calendar from 'react-calendar'
 import useFilterStore from '@/store/useFilterStroe'
-import { FILTER_TITLE, LOCATION_CITIES } from '@/const/filter'
+import { FILTER_TITLE, LOCATION_CITIES } from '@/constants/filter'
 
 /**
  * @info Navbar 필터 (ROOM 검색용도)
