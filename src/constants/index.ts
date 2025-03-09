@@ -45,3 +45,4 @@ export const CATEGORY_DATA = [
   { title: '독립오피스', Icon: FaHome },
   { title: '가정집', Icon: MdHouse },
 ]
+export const CATEGORY = CATEGORY_DATA.map((item) => item.title)
