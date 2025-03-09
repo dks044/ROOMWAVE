@@ -1,4 +1,3 @@
-import { getRooms } from '@/apis/room'
 import CategoryList from '@/components/CategoryList'
 import GridLayout from '@/components/GridLayout'
 import RoomItem from '@/components/RoomList'
@@ -16,6 +15,16 @@ const Home = async () => {
       </GridLayout>
     </>
   )
+}
+async function getRooms() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/rooms`, {
+    cache: 'force-cache',
+  })
+  if (!res.ok) {
+    throw new Error('failed to fetch ssibal')
+  }
+
+  return res.json()
 }
 
 export default Home
