@@ -17,7 +17,12 @@ const Home = async () => {
   )
 }
 async function getRooms() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/rooms`, {
+  const apiUrl =
+    process.env.NODE_ENV === 'development'
+      ? process.env.NEXT_PUBLIC_API_URL
+      : process.env.VERCEL_URL
+
+  const res = await fetch(`${apiUrl}/api/rooms`, {
     cache: 'force-cache',
   })
   if (!res.ok) {
@@ -26,5 +31,3 @@ async function getRooms() {
 
   return res.json()
 }
-
-export default Home
