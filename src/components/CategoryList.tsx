@@ -13,7 +13,7 @@ const CategoryList = () => {
           type="button"
           key={category.title}
           className={cn(
-            'w-16 flex-none text-gray-500 hover:text-gray-700 gap-3 justify-center text-center py-4 transition',
+            'w-[4.5rem] flex-none text-gray-500 hover:text-gray-700 gap-3 justify-center text-center py-4 transition',
             {
               'text-black font-semibold underline underline-offset-8':
                 category.title === filterValue.category,
@@ -27,7 +27,7 @@ const CategoryList = () => {
             <div className="text-2xl mx-auto">
               <category.Icon />
             </div>
-            <div className="text-gray-700 text-[0.6rem] text-center">
+            <div className="text-gray-700 text-[0.8rem] text-center">
               {category.title}
             </div>
           </div>

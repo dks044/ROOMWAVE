@@ -1,35 +1,37 @@
+'use client'
+
 import CategoryList from '@/components/CategoryList'
 import GridLayout from '@/components/GridLayout'
 import RoomItem from '@/components/RoomList'
+import { SkeletonBox } from '@/components/skeleton'
 import { API_URL } from '@/constants'
+import useRooms from '@/hooks/room/useRooms'
 import { RoomType } from '@/types'
 import React from 'react'
 
-const Home = async () => {
-  const data: RoomType[] = await getRooms()
+const Home = () => {
+  const { data, isLoading, isError } = useRooms()
+
+  if (isLoading)
+    return (
+      <>
+        <CategoryList />
+        <GridLayout>
+          {Array.from({ length: 12 }).map((_, index) => (
+            <SkeletonBox key={index} />
+          ))}
+        </GridLayout>
+      </>
+    )
 
   return (
     <>
       <CategoryList />
       <GridLayout>
-        {data?.map((room) => <RoomItem room={room} key={room.id} />)}
+        {data?.map((room: RoomType) => <RoomItem room={room} key={room.id} />)}
       </GridLayout>
     </>
   )
-}
-
-async function getRooms() {
-  const res = await fetch(`${API_URL}/rooms`, {
-    cache: 'force-cache',
-  })
-
-  if (!res.ok) {
-    const errorMessage = await res.text()
-    console.error('Fetch error:', errorMessage)
-    throw new Error('failed to fetch ssibal')
-  }
-
-  return res.json()
 }
 
 export default Home

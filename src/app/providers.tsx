@@ -2,10 +2,23 @@
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navber/Navbar'
 import useFilterModeStore from '@/store/useFilterModeStore'
-import React, { useEffect, useRef } from 'react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import React, { ReactNode, useEffect, useRef } from 'react'
 
 interface Props {
   children?: React.ReactNode
+}
+
+const queryClient = new QueryClient()
+
+export function NextProvider({ children }: { children: ReactNode }) {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools />
+      {children}
+    </QueryClientProvider>
+  )
 }
 
 const NextLayout = ({ children }: Props) => {

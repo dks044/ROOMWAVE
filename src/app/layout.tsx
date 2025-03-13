@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
-import NextLayout from './providers'
+import NextLayout, { NextProvider } from './providers'
 import localFont from 'next/font/local'
 
 export const metadata: Metadata = {
@@ -24,7 +24,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={aritaDotum.className}>
-        <NextLayout>{children}</NextLayout>
+        <NextProvider>
+          <NextLayout>{children}</NextLayout>
+        </NextProvider>
       </body>
     </html>
   )
