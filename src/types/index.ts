@@ -6,3 +6,9 @@ export interface RoomType {
   price: number
   category: string
 }
+
+export interface FaqType {
+  id: number
+  title: string
+  desc: string
+}

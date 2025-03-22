@@ -1,6 +1,6 @@
 import { fakerKO as faker } from '@faker-js/faker'
 import prisma from '../src/lib/prismadb'
-import { CATEGORY } from '@/constants'
+import { CATEGORY } from '../src/constants/index'
 
 async function seedUsers() {
   Array.from({ length: 10 }, (v, i) => i).forEach(async () => {
@@ -26,26 +26,10 @@ async function seedRooms() {
       const roomData = {
         title: faker.lorem.words(),
         images: [
-          faker.image.urlLoremFlickr({
-            category: 'business',
-            width: 500,
-            height: 500,
-          }),
-          faker.image.urlLoremFlickr({
-            category: 'travel',
-            width: 500,
-            height: 500,
-          }),
-          faker.image.urlLoremFlickr({
-            category: 'business',
-            width: 500,
-            height: 500,
-          }),
-          faker.image.urlLoremFlickr({
-            category: 'building',
-            width: 500,
-            height: 500,
-          }),
+          faker.image.urlPicsumPhotos({ width: 500, height: 500 }),
+          faker.image.urlPicsumPhotos({ width: 500, height: 500 }),
+          faker.image.urlPicsumPhotos({ width: 500, height: 500 }),
+          faker.image.urlPicsumPhotos({ width: 500, height: 500 }),
         ],
         lat: getRandomLatitude(),
         lng: getRandomLongtitude(),
@@ -82,6 +66,19 @@ async function seedRooms() {
   }
 }
 
+async function seedFaqs() {
+  Array.from({ length: 10 }, (v, i) => i).forEach(async () => {
+    const faqData = {
+      title: faker.lorem.words(),
+      desc: faker.lorem.paragraph(),
+    }
+    const res = await prisma.faq.create({
+      data: faqData,
+    })
+    console.log(res)
+  })
+}
+
 //서울 위도/경도값 랜덤 생성 함수
 function getRandomLatitude() {
   const minLatitude = 37.4316
@@ -109,8 +106,9 @@ function getRandomLongtitude() {
 }
 
 async function main() {
-  await seedUsers()
-  await seedRooms()
+  // await seedUsers()
+  //await seedRooms()
+  await seedFaqs()
 }
 
 main()

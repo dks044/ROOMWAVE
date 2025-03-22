@@ -22,9 +22,9 @@ import { FaHome } from 'react-icons/fa' // 독립오피스
 import { MdHouse } from 'react-icons/md' // 가정집
 
 export const API_URL =
-  process.env.NODE_ENV === 'development'
-    ? `${process.env.NEXT_PUBLIC_API_URL}/api/` // 로컬 개발 환경에서의 API URL
-    : `https://${process.env.VERCEL_URL}/api` // Vercel 배포 환경에서의 API URL
+  process.env.NODE_ENV === 'production'
+    ? '/api'
+    : process.env.NEXT_PUBLIC_API_URL!
 
 export const CATEGORY_DATA = [
   { title: '파티룸', Icon: LuPartyPopper },
