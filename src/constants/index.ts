@@ -23,8 +23,8 @@ import { MdHouse } from 'react-icons/md' // 가정집
 
 export const API_URL =
   process.env.NODE_ENV === 'production'
-    ? '/api'
-    : process.env.NEXT_PUBLIC_API_URL!
+    ? process.env.NEXT_PUBLIC_API_URL!
+    : 'http://localhost:3000/api'
 
 export const CATEGORY_DATA = [
   { title: '파티룸', Icon: LuPartyPopper },
