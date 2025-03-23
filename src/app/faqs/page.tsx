@@ -1,3 +1,4 @@
+'use server'
 import { getFaqs } from '@/apis'
 import { FaqType } from '@/types'
 import React from 'react'

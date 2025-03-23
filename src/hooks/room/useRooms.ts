@@ -7,6 +7,8 @@ const useRooms = () => {
     queryKey: [ROOM.all],
     queryFn: getRooms,
     staleTime: 10000,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   })
 
   return { data, isLoading, isError }

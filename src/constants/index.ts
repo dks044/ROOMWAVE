@@ -21,6 +21,11 @@ import { AiOutlineAudio } from 'react-icons/ai' // 녹음실
 import { FaHome } from 'react-icons/fa' // 독립오피스
 import { MdHouse } from 'react-icons/md' // 가정집
 
+export const SERVER_SIDE_API_URL =
+  process.env.NODE_ENV === 'production'
+    ? process.env.API_URL!
+    : 'http://localhost:3000/api'
+
 export const API_URL =
   process.env.NODE_ENV === 'production'
     ? process.env.NEXT_PUBLIC_API_URL!
