@@ -5,7 +5,7 @@ import { SERVER_SIDE_API_URL } from '@/constants'
  */
 export const getFaqs = async () => {
   const res = await fetch(`${SERVER_SIDE_API_URL}/faqs`, {
-    cache: 'force-cache',
+    next: { revalidate: 600 },
   })
   if (!res.ok) {
     throw new Error('failed to fetch')
