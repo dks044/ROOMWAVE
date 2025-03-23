@@ -1,10 +1,12 @@
-'use server'
-import { getFaqs } from '@/apis'
-import { FaqType } from '@/types'
-import React from 'react'
+import prisma from '@/lib/prismadb'
 
-const page = async () => {
-  const data: FaqType[] = await getFaqs()
+export const dynamic = 'force-static'
+
+/**
+ * @info SSG PAGE
+ */
+const Page = async () => {
+  const data = await prisma.faq.findMany()
 
   return (
     <div className="max-w-5xl mx-auto">
@@ -25,4 +27,4 @@ const page = async () => {
   )
 }
 
-export default page
+export default Page
