@@ -1,6 +1,6 @@
 'use client'
 import Footer from '@/components/Footer'
-import Navbar from '@/components/Navber/Navbar'
+import Navbar from '@/components/navber/Navbar'
 import useFilterModeStore from '@/store/useFilterModeStore'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
