@@ -19,7 +19,7 @@ async function seedUsers() {
 async function seedRooms() {
   const totalUsers = await prisma.user.findMany()
   if (totalUsers?.length > 1) {
-    const promises = Array.from({ length: 10 }, async () => {
+    const promises = Array.from({ length: 15 }, async () => {
       const randomUserIndex = Math.floor(Math.random() * totalUsers.length)
       const randomUser = totalUsers[randomUserIndex]
 
@@ -107,8 +107,8 @@ function getRandomLongtitude() {
 
 async function main() {
   // await seedUsers()
-  //await seedRooms()
-  await seedFaqs()
+  await seedRooms()
+  //await seedFaqs()
 }
 
 main()

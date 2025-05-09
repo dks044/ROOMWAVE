@@ -5,7 +5,6 @@ import { RxDividerVertical } from 'react-icons/rx'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { AiOutlineUser } from 'react-icons/ai'
-import { GiWaves } from 'react-icons/gi'
 import useNavigation from '@/hooks/useNavigation'
 import NavbarFilter from './Navbar.Filter'
 import useNav from '@/hooks/useNav'
@@ -30,7 +29,10 @@ export default function Navbar() {
         },
       )}
     >
-      <div className="grow basis-0 hidden font-semibold text-lg sm:text-xl text-brand cursor-pointer sm:flex sm:gap-2 ">
+      <div
+        className="grow basis-0 hidden font-semibold text-lg sm:text-xl text-brand cursor-pointer sm:flex sm:gap-2 "
+        onClick={() => router.push('/')}
+      >
         <div className="">ROOMWAVE</div>
       </div>
       {showfilter === false ? (

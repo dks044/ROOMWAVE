@@ -4,10 +4,10 @@ import Navbar from '@/components/navber/Navbar'
 import useFilterModeStore from '@/store/useFilterModeStore'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import React, { ReactNode, useEffect, useRef } from 'react'
+import { ReactNode, useEffect, useRef } from 'react'
 
 interface Props {
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
 const queryClient = new QueryClient()
