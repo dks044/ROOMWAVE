@@ -2,14 +2,18 @@
 
 import CategoryList from '@/components/CategoryList'
 import GridLayout from '@/components/GridLayout'
+import IsError from '@/components/IsError'
 import RoomItem from '@/components/RoomList'
 import { SkeletonBox } from '@/components/skeleton'
 import useRooms from '@/hooks/room/useRooms'
 import { RoomType } from '@/types'
-import React, { Fragment } from 'react'
+import React from 'react'
 
 const Home = () => {
   const { data, isLoading, isError } = useRooms()
+  if (isError) {
+    return <IsError />
+  }
 
   if (isLoading)
     return (
