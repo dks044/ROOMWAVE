@@ -1,43 +1,52 @@
 'use client'
-
+import React from 'react'
 import CategoryList from '@/components/CategoryList'
 import GridLayout from '@/components/GridLayout'
 import IsError from '@/components/IsError'
+import Loader from '@/components/Loader'
 import RoomItem from '@/components/RoomList'
-import { SkeletonBox } from '@/components/skeleton'
+import SkeletonCards from '@/components/skeleton/SkeletonCards'
 import useRooms from '@/hooks/room/useRooms'
 import { RoomType } from '@/types'
-import React from 'react'
+import useRoomsInfiniteScroll from './hooks/use-Rooms-Infinite-Scroll'
 
 const Home = () => {
-  const { data, isLoading, isError } = useRooms()
-  if (isError) {
-    return <IsError />
-  }
+  const {
+    rooms,
+    isFetching,
+    fetchNextPage,
+    isFetchingNextPage,
+    hasNextPage,
+    isError,
+    isLoading,
+  } = useRooms()
+  const { ref, pageRef, isPageEnd } = useRoomsInfiniteScroll({
+    hasNextPage,
+    fetchNextPage,
+  })
 
-  if (isLoading)
-    return (
-      <>
-        <CategoryList />
-        <GridLayout>
-          {Array.from({ length: 12 }).map((_, index) => (
-            <div className="z-[-10] flex flex-col space-y-2" key={index}>
-              <SkeletonBox classname="w-full h-52" />
-              <SkeletonBox classname="w-full h-2" />
-              <SkeletonBox classname="w-[60%] h-2" />
-              <SkeletonBox classname="w-[40%] h-2" />
-            </div>
-          ))}
-        </GridLayout>
-      </>
-    )
+  if (isError) {
+    return <IsError text="서버에서 데이터를 불러오는중 오류가 발생했습니다." />
+  }
 
   return (
     <>
       <CategoryList />
       <GridLayout>
-        {data?.map((room: RoomType) => <RoomItem room={room} key={room.id} />)}
+        {isLoading || isFetching ? (
+          <SkeletonCards />
+        ) : (
+          rooms?.pages?.map((page, index) => (
+            <React.Fragment key={index}>
+              {page?.data?.map((room: RoomType) => (
+                <RoomItem room={room} key={room.id} />
+              ))}
+            </React.Fragment>
+          ))
+        )}
       </GridLayout>
+      {(isFetching || hasNextPage || isFetchingNextPage) && <Loader />}
+      <div className="w-full touch-none h-10 mb-10" ref={ref} />
     </>
   )
 }

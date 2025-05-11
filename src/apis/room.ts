@@ -1,10 +1,17 @@
-import { API_URL } from '@/constants'
+import axiosInstance from '@/lib/axios'
 
 /**
  * @info 모든방을 다 가져옴
  */
-export const getRooms = async () => {
-  const data = await fetch(`${API_URL}/rooms`)
+export const getRooms = async ({ pageParam = 1 }) => {
+  const response = await axiosInstance('/rooms', {
+    params: {
+      limit: 12,
+      page: pageParam,
+    },
+  })
 
-  return data.json()
+  if (!response) throw new Error('Failed to fetch rooms')
+
+  return response.data
 }

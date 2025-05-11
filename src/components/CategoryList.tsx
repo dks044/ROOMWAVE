@@ -7,7 +7,7 @@ import cn from 'classnames'
 const CategoryList = () => {
   const { setFilterValue, filterValue } = useFilterStore()
   return (
-    <div className="flex gap-6 fixed top-20 inset-x-0 mx-auto overflow-x-scroll w-full flex-nowrap px-2 sm:pl-24 pr-16 bg-white z-1 mb-6 ">
+    <div className="flex gap-6 fixed top-20 inset-x-0 mx-auto overflow-x-scroll w-full flex-nowrap px-2 sm:pl-24 pr-16 bg-white z-10 mb-6 ">
       {CATEGORY_DATA?.map((category) => (
         <button
           type="button"

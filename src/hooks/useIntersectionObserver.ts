@@ -15,8 +15,8 @@ import { RefObject, useState, useEffect } from 'react'
  *          (해당 요소가 root와 어떻게 교차되고 있는지에 대한 정보)
  */
 const useIntersectionObserver = (
-  elementRef: RefObject<Element>,
-  { therehold = 0.1, root = null, rootMargin = '0' },
+  elementRef: RefObject<Element | null>,
+  { therehold = 0.1, root = null, rootMargin = '0%' },
 ) => {
   const [entry, setEntry] = useState<IntersectionObserverEntry>()
 

@@ -29,11 +29,13 @@ const NextLayout = ({ children }: Props) => {
    * @info 다른곳 클릭하면 필터(showFilter) 해제
    */
   const handleClickOutside = (event: MouseEvent) => {
-    if (
-      navbarRef.current &&
-      !navbarRef.current.contains(event.target as Node)
-    ) {
-      setShowfilter(false)
+    if (typeof document !== 'undefined') {
+      if (
+        navbarRef.current &&
+        !navbarRef.current.contains(event.target as Node)
+      ) {
+        setShowfilter(false)
+      }
     }
   }
 
