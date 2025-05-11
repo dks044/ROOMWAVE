@@ -1,8 +1,13 @@
 'use client'
-import LottieAnimation from '@/components/LottieAnimation'
+
+import dynamic from 'next/dynamic'
 import { NOT_FOUND_ANIMATION } from '@/constants/lottie'
 import { useRouter } from 'next/navigation'
 import React from 'react'
+
+const LottieAnimation = dynamic(() => import('@/components/LottieAnimation'), {
+  ssr: false,
+})
 
 const NotFound = () => {
   const router = useRouter()
