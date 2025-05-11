@@ -11,6 +11,7 @@ import useNav from '@/hooks/useNav'
 import { formatNumber } from '@/util/util'
 import useFilterModeStore from '@/store/useFilterModeStore'
 import useFilterStore from '@/store/useFilterStroe'
+import Logo from '../common/Logo'
 
 export default function Navbar() {
   const { showfilter, setShowfilter } = useFilterModeStore()
@@ -33,7 +34,10 @@ export default function Navbar() {
         className="grow basis-0 hidden font-semibold text-lg sm:text-xl text-brand cursor-pointer sm:flex sm:gap-2 "
         onClick={() => router.push('/')}
       >
-        <div className="">ROOMWAVE</div>
+        <Logo size={55} className="hidden sm:flex" />
+        <div className="my-auto hover:text-pressedBrand transition">
+          ROOMWAVE
+        </div>
       </div>
       {showfilter === false ? (
         <div className="w-full sm:w-[280px] border py-1.5 border-gray-200 rounded-full shadow hover:shadow-lg cursor-pointer flex justify-between pl-6 pr-2 transition">
