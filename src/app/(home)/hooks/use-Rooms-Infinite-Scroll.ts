@@ -30,14 +30,12 @@ const useRoomsInfiniteScroll = ({
     if (!isPageEnd || !hasNextPage || throttleRef.current) return
 
     throttleRef.current = true
-    fetchNextPage()
-
-    const timer = setTimeout(() => {
-      throttleRef.current = false
-    }, 1000)
-
-    return () => clearTimeout(timer)
-  }, [fetchNextPage, hasNextPage, isPageEnd])
+    fetchNextPage().finally(() => {
+      setTimeout(() => {
+        throttleRef.current = false
+      }, 1000)
+    })
+  }, [isPageEnd, hasNextPage, fetchNextPage])
 
   return { ref, pageRef, isPageEnd }
 }

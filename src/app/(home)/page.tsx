@@ -46,7 +46,7 @@ const Home = () => {
         )}
       </GridLayout>
       {(isFetching || hasNextPage || isFetchingNextPage) && <Loader />}
-      <div className="w-full touch-none h-10 mb-10" ref={ref} />
+      <div className="w-full touch-none h-40 mb-10 " ref={ref} />
     </>
   )
 }

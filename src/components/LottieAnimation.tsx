@@ -1,7 +1,9 @@
 'use client'
 
-import Lottie from 'lottie-react'
 import cn from 'classnames'
+import dynamic from 'next/dynamic'
+
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 /**
  * @info 로티 애니메이션 경로 받아서 틀어놓는 녀석
  */
