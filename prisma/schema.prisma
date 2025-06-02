@@ -20,6 +20,7 @@ model User {
   image   String?
   desc    String?   //설명
   rooms   Room[]
+  createdAt DateTime @default(now())
 
 }
 
@@ -44,6 +45,7 @@ model Room {
   userId            String?
   user              User?        @relation(fields: [userId],references: [id], onDelete: Cascade)
   @@index([userId])
+  createdAt         DateTime    @default(now())
 }
 
 model Faq {
