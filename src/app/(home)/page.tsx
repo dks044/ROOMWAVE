@@ -49,7 +49,7 @@ const Home = () => {
       </GridLayout>
       <MapButton />
       {(isFetching || hasNextPage || isFetchingNextPage) && <Loader />}
-      <div className="w-full touch-none h-40 mb-10 " ref={ref} />
+      <div className="mb-10 h-40 w-full touch-none" ref={ref} />
     </>
   )
 }

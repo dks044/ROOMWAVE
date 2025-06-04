@@ -1,3 +1,4 @@
+import { BLUR_DATA_URL } from '@/constants'
 import { RoomType } from '@/types'
 import Image from 'next/image'
 import React from 'react'
@@ -12,14 +13,14 @@ export default function RoomItem({ room }: { room: RoomType }) {
         width={500}
         height={500}
         placeholder="blur"
-        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNctHpRPQAGVgJwRKJeuAAAAABJRU5ErkJggg=="
-        className="rounded-md w-full h-auto object-cover"
+        blurDataURL={BLUR_DATA_URL}
+        className="h-auto w-full rounded-md object-cover"
       />
-      <div className="mt-2 font-semibold text-sm">{room.title}</div>
-      <span className="text-xs px-2 py-1 rounded-full bg-black text-white mt-1">
+      <div className="mt-2 text-sm font-semibold">{room.title}</div>
+      <span className="mt-1 rounded-full bg-black px-2 py-1 text-xs text-white">
         {room.category}
       </span>
-      <div className="mt-1 text-gray-400 text-sm">{room.address}</div>
+      <div className="mt-1 text-sm text-gray-400">{room.address}</div>
       <div className="mt-1 text-sm">
         {room?.price?.toLocaleString()}원{' '}
         <span className="text-gray-500"> /시간</span>

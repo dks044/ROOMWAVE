@@ -1,11 +1,17 @@
 'use client'
 
 import { DEFAULT_LAT, DEFAULT_LNG, ZOOM_LEVEL } from '@/constants'
+import { MARKER_IMAGE } from '@/constants/map'
 import useRoomsMap from '@/hooks/room/useRoomsMap'
+import { RoomType } from '@/types'
 
 import Script from 'next/script'
+import { SetStateAction } from 'react'
 
-export default function Map() {
+interface MapProps {
+  setSelectedRoom: React.Dispatch<SetStateAction<RoomType | null>>
+}
+export default function Map({ setSelectedRoom }: MapProps) {
   const { rooms, isSuccess } = useRoomsMap()
 
   // @see - https://apis.map.kakao.com/web/documentation/#load
@@ -27,10 +33,44 @@ export default function Map() {
           Number(room.lng),
         )
 
+        // 마커 이미지 설정
+        const imageSrc = '/images/marker.png'
+        const imageSize = new window.kakao.maps.Size(30, 30)
+        const imageOption = { offset: new window.kakao.maps.Point(16, 46) }
+
+        //마커 이미지를 생성합니다
+        const marker_image = new window.kakao.maps.MarkerImage(
+          imageSrc,
+          imageSize,
+          imageOption,
+        )
+
         // 마커를 생성합니다
         const marker = new window.kakao.maps.Marker({
           position: markerPosition,
+          image: marker_image,
         })
+
+        // custom overlay를 설정해줍니다
+        const content = `<div class="custom_overlay">${room.price?.toLocaleString()}원</div>`
+
+        // custom overlay를 생성합니다
+        const customOverlay = new window.kakao.maps.CustomOverlay({
+          position: markerPosition,
+          content: content,
+        })
+
+        // 마커에 마우스오버 이벤트를 등록합니다
+        window.kakao.maps.event.addListener(marker, 'mouseover', function () {
+          // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+          setSelectedRoom(room)
+        })
+        window.kakao.maps.event.addListener(map, 'mouseover', function () {
+          setSelectedRoom(null)
+        })
+
+        // 커스텀오버레이가 지도 위에 표시되도록 설정합니다
+        customOverlay.setMap(map)
 
         // 마커가 지도 위에 표시되도록 설정합니다
         marker.setMap(map)
@@ -48,7 +88,7 @@ export default function Map() {
           onReady={loadKakaoMap}
         />
       )}
-      <div id="map" className="w-full h-screen" />
+      <div id="map" className="h-screen w-full" />
     </>
   )
 }

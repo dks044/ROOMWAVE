@@ -55,9 +55,12 @@ export const CATEGORY_DATA = [
   { title: '독립오피스', Icon: FaHome },
   { title: '가정집', Icon: MdHouse },
 ]
+export const BLUR_DATA_URL =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNctHpRPQAGVgJwRKJeuAAAAABJRU5ErkJggg=='
+
 export const CATEGORY = CATEGORY_DATA.map((item) => item.title)
 
 export const DEFAULT_LAT = 37.5665
 export const DEFAULT_LNG = 126.978
 
-export const ZOOM_LEVEL = 3
+export const ZOOM_LEVEL = 6
