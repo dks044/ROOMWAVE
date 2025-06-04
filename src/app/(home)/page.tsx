@@ -6,9 +6,10 @@ import IsError from '@/components/IsError'
 import Loader from '@/components/Loader'
 import RoomItem from '@/components/RoomList'
 import SkeletonCards from '@/components/skeleton/SkeletonCards'
-import useRooms from '@/hooks/room/useRooms'
 import { RoomType } from '@/types'
 import useRoomsInfiniteScroll from './hooks/use-Rooms-Infinite-Scroll'
+import MapButton from './components/MapButton'
+import useRoomsScroll from '@/hooks/room/useRoomsScroll'
 
 const Home = () => {
   const {
@@ -19,7 +20,8 @@ const Home = () => {
     hasNextPage,
     isError,
     isLoading,
-  } = useRooms()
+  } = useRoomsScroll()
+
   const { ref, pageRef, isPageEnd } = useRoomsInfiniteScroll({
     hasNextPage,
     fetchNextPage,
@@ -45,6 +47,7 @@ const Home = () => {
           ))
         )}
       </GridLayout>
+      <MapButton />
       {(isFetching || hasNextPage || isFetchingNextPage) && <Loader />}
       <div className="w-full touch-none h-40 mb-10 " ref={ref} />
     </>

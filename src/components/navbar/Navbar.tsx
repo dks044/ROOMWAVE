@@ -31,20 +31,20 @@ export default function Navbar() {
       )}
     >
       <div
-        className="grow basis-0 hidden font-semibold text-lg sm:text-xl text-brand cursor-pointer sm:flex sm:gap-2 "
+        className="grow basis-0 hidden font-semibold text-lg sm:text-xl text-brand cursor-pointer sm:flex sm:gap-2"
         onClick={() => router.push('/')}
       >
-        <Logo size={55} className="hidden sm:flex" />
+        <Logo size={55} className="hidden sm:flex rounded-lg" />
         <div className="my-auto hover:text-pressedBrand transition">
           ROOMWAVE
         </div>
       </div>
       {showfilter === false ? (
-        <div className="w-full sm:w-[280px] border py-1.5 border-gray-200 rounded-full shadow hover:shadow-lg cursor-pointer flex justify-between pl-6 pr-2 transition">
-          <div
-            className="flex justify-center gap-1"
-            onClick={() => setShowfilter(true)}
-          >
+        <div
+          className="w-full sm:w-[280px] border py-1.5 border-gray-200 rounded-full shadow hover:shadow-lg cursor-pointer flex justify-between pl-6 pr-2 transition"
+          onClick={() => setShowfilter(true)}
+        >
+          <div className="flex justify-center gap-1">
             <div className="my-auto font-semibold text-sm">어디든지</div>
             <RxDividerVertical className="text-gray-200 my-auto text-2xl" />
             <div className="my-auto font-semibold text-sm">언제든</div>

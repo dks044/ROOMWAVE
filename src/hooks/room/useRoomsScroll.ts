@@ -1,8 +1,9 @@
-import { getRooms } from '@/apis/room'
+import { getRoomsForScroll } from '@/apis/room'
 import { ROOM } from '@/query/key'
 import { useInfiniteQuery } from '@tanstack/react-query'
 
-const useRooms = () => {
+/**@info 무한스크롤 룸 리스트 */
+const useRoomsScroll = () => {
   const {
     data: rooms,
     isFetching,
@@ -11,9 +12,10 @@ const useRooms = () => {
     hasNextPage,
     isError,
     isLoading,
+    isSuccess,
   } = useInfiniteQuery({
     queryKey: [ROOM.all],
-    queryFn: getRooms,
+    queryFn: getRoomsForScroll,
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.length === 0 ? undefined : allPages.length + 1
     },
@@ -30,7 +32,8 @@ const useRooms = () => {
     hasNextPage,
     isError,
     isLoading,
+    isSuccess,
   }
 }
 
-export default useRooms
+export default useRoomsScroll

@@ -14,7 +14,7 @@ const Logo = ({
   return (
     <Link href="/" className={cn('inline-block', className)}>
       <Image
-        src="/logo2.png"
+        src="/logo3.png"
         alt="ROOMWAVE logo"
         width={size}
         height={size}

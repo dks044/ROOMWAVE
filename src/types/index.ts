@@ -5,6 +5,8 @@ export interface RoomType {
   address: string
   price: number
   category: string
+  lat: string
+  lng: string
 }
 
 export interface FaqType {

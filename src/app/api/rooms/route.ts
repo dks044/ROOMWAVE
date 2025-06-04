@@ -1,6 +1,30 @@
 import prisma from '@/lib/prismadb'
 import { NextResponse } from 'next/server'
 
+/**
+ * @api GET /api/rooms
+ * @description
+ * 페이지네이션 파라미터가 있을 경우, 해당 페이지에 해당하는 room 목록을 반환.
+ * 파라미터가 없으면 전체 room 목록을 반환함.
+ *
+ * @queryParam page {string} - (선택) 요청할 페이지 번호 (1부터 시작)
+ * @queryParam limit {string} - (선택) 페이지 당 항목 수
+ *
+ * @returns {JSON}
+ * - page: 요청한 페이지 번호
+ * - data: room 리스트
+ * - totalCount: 전체 room 개수
+ * - totalPage: 총 페이지 수
+ *
+ * @example
+ * // GET /api/rooms?page=2&limit=10
+ * {
+ *   "page": 2,
+ *   "data": [ ... ],
+ *   "totalCount": 45,
+ *   "totalPage": 5
+ * }
+ */
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url)
   const page = searchParams.get('page') as string

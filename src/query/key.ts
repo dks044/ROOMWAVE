@@ -5,4 +5,5 @@
 
 export const ROOM = {
   all: ['rooms_all'] as const,
+  map: ['rooms_map'] as const,
 }

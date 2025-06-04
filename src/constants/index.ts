@@ -56,3 +56,8 @@ export const CATEGORY_DATA = [
   { title: '가정집', Icon: MdHouse },
 ]
 export const CATEGORY = CATEGORY_DATA.map((item) => item.title)
+
+export const DEFAULT_LAT = 37.5665
+export const DEFAULT_LNG = 126.978
+
+export const ZOOM_LEVEL = 3

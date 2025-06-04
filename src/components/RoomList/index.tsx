@@ -1,13 +1,18 @@
 import { RoomType } from '@/types'
+import Image from 'next/image'
 import React from 'react'
 
 export default function RoomItem({ room }: { room: RoomType }) {
   return (
     <div>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src={room?.images?.[0]}
         alt={room.title}
+        width={500}
+        height={500}
+        placeholder="blur"
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNctHpRPQAGVgJwRKJeuAAAAABJRU5ErkJggg=="
         className="rounded-md w-full h-auto object-cover"
       />
       <div className="mt-2 font-semibold text-sm">{room.title}</div>

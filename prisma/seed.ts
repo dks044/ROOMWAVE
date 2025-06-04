@@ -32,7 +32,7 @@ async function seedRooms() {
           faker.image.urlPicsumPhotos({ width: 500, height: 500 }),
         ],
         lat: getRandomLatitude(),
-        lng: getRandomLongtitude(),
+        lng: getRandomLongitude(),
         address:
           faker.location.state() +
           faker.location.street() +
@@ -92,23 +92,42 @@ function getRandomLatitude() {
     })
     ?.toString()
 }
-function getRandomLongtitude() {
-  const minLongtitude = 37.4316
-  const maxLongtitude = 37.701
+function getRandomLongitude() {
+  const minLongitude = 126.7
+  const maxLongitude = 127.3
 
   return faker.number
     .float({
-      min: minLongtitude,
-      max: maxLongtitude,
+      min: minLongitude,
+      max: maxLongitude,
       multipleOf: 0.000001,
     })
     ?.toString()
 }
+async function setRandomImageRoomsSet() {
+  const rooms = await prisma.room.findMany()
+
+  for (const room of rooms) {
+    const images = Array.from({ length: 5 }, () =>
+      faker.image.urlPicsumPhotos({ width: 500, height: 500 }),
+    )
+
+    await prisma.room.update({
+      where: { id: room.id },
+      data: {
+        images,
+      },
+    })
+  }
+
+  console.log('✅ 모든 Room에 랜덤 이미지 5장씩 넣음!')
+}
 
 async function main() {
   // await seedUsers()
-  await seedRooms()
+  //await seedRooms()
   //await seedFaqs()
+  await setRandomImageRoomsSet()
 }
 
 main()
