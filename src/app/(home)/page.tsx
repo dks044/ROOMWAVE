@@ -10,6 +10,7 @@ import { RoomType } from '@/types'
 import useRoomsInfiniteScroll from './hooks/use-Rooms-Infinite-Scroll'
 import MapButton from './components/MapButton'
 import useRoomsScroll from '@/hooks/room/useRoomsScroll'
+import RoomwaveSlider from './components/RoomImageSlicer'
 
 const Home = () => {
   const {
@@ -34,6 +35,7 @@ const Home = () => {
   return (
     <>
       <CategoryList />
+      <RoomwaveSlider />
       <GridLayout>
         {isLoading || isFetching ? (
           <SkeletonCards />

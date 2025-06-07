@@ -210,10 +210,19 @@
 }
 
 @font-face {
-  font-family: 'AritaDotumKR-Medium';
+  font-family: 'AritaDotumKR';
   src: url('/fonts/AritaDotumKR-Medium.ttf') format('truetype');
-  font-weight: normal;
+  font-weight: 400;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'AritaDotumKR';
+  src: url('/fonts/AritaSansLTN-Medium.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 @tailwind base;
@@ -277,7 +286,7 @@
 }
 
 .custom_overlay {
-  @apply bg-white rounded-full px-2 py-1 text-xs font-semibold border border-gray-300 shadow hover:shadow-lg hover:font-bold;
+  @apply rounded-full border border-gray-300 bg-white px-2 py-1 text-xs font-semibold shadow hover:font-bold hover:shadow-lg;
 }
 
 @layer base {

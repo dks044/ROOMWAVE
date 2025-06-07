@@ -6,10 +6,10 @@ import cn from 'classnames'
  */
 const Loader = ({ className }: { className?: string }) => {
   return (
-    <div className={cn('flex gap-4 justify-center', className)}>
-      <div className="w-3 h-3 rounded-full bg-gray-500 animate-ping" />
-      <div className="w-3 h-3 rounded-full bg-gray-500 animate-ping" />
-      <div className="w-3 h-3 rounded-full bg-gray-500 animate-ping" />
+    <div className={cn('flex justify-center gap-4', className)}>
+      <div className="h-3 w-3 animate-ping rounded-full bg-gray-500" />
+      <div className="h-3 w-3 animate-ping rounded-full bg-gray-500" />
+      <div className="h-3 w-3 animate-ping rounded-full bg-gray-500" />
     </div>
   )
 }

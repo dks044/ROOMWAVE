@@ -22,12 +22,36 @@ import { FaHome } from 'react-icons/fa' // 독립오피스
 import { MdHouse } from 'react-icons/md' // 가정집
 import { RoomType } from '@/types'
 
+import { Wix_Madefor_Display } from 'next/font/google'
+
 import { FaParking } from 'react-icons/fa'
 import { FaShower } from 'react-icons/fa'
 import { MdOutlineCancel } from 'react-icons/md'
 import { LuAirVent } from 'react-icons/lu'
 import { LuWifi } from 'react-icons/lu'
 import { MdOutlineMeetingRoom } from 'react-icons/md'
+
+export const MAIN_SLIDES = [
+  {
+    title: '파티룸 찾을 땐 쿠폰 할인 받으세요!',
+    description: '쿠폰 제공 파티룸 바로가기',
+
+    bgColor: 'bg-blue-500',
+    image: '/images/coupon.png',
+  },
+  {
+    title: '친구들과 함께하는 스터디룸 예약!',
+    description: '시간 단위로 합리적으로 이용해보세요',
+    bgColor: 'bg-orange-500',
+    image: '/images/studyroom.png',
+  },
+  {
+    title: '장기 거주도 OK, 원룸쉐어 특가!',
+    description: '1개월 이상 거주자에게 특별 할인',
+    bgColor: 'bg-green-500',
+    image: '/images/longstay.png',
+  },
+]
 
 export const SERVER_SIDE_API_URL =
   process.env.NODE_ENV === 'production'
@@ -38,6 +62,12 @@ export const API_URL =
   process.env.NODE_ENV === 'production'
     ? process.env.NEXT_PUBLIC_API_URL!
     : 'http://localhost:3000/api'
+
+export const WIX_FONT = Wix_Madefor_Display({
+  weight: ['400', '700'], // 원하는 굵기만 preload
+  subsets: ['latin'], // 또는 ['latin', 'korean']
+  display: 'swap', // 권장 설정
+})
 
 export const CATEGORY_DATA = [
   { title: '파티룸', Icon: LuPartyPopper },

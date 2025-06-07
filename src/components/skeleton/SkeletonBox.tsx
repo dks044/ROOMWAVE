@@ -4,7 +4,7 @@ export const SkeletonBox = ({ classname }: { classname?: string }) => {
   return (
     <div
       className={cn(
-        'bg-gray-200 animate-pulse bg-muted/80 rounded-md object-fill z-[0]',
+        'z-[0] animate-pulse rounded-md bg-gray-200 bg-muted/80 object-fill',
         classname,
       )}
     />

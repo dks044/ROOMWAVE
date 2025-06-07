@@ -8,6 +8,7 @@ import {
   featureKeyMap,
   FeatureType,
 } from '@/constants'
+import { GiSadCrab } from 'react-icons/gi'
 
 const FeatureSection = ({ room }: { room: RoomType }) => {
   const activeFeatures = (Object.keys(featureKeyMap) as FeatureType[]).filter(
@@ -34,28 +35,62 @@ const FeatureSection = ({ room }: { room: RoomType }) => {
           />
         </div>
 
-        <div className="mt-4 flex flex-col gap-6 border-y border-gray-300 py-6">
-          {activeFeatures.map((feature) => (
-            <div key={feature} className="flex items-center gap-6 px-4">
-              {FeatureIcons[feature]}
+        <div className="mt-4 flex flex-col gap-6 border-y border-gray-300 px-4 py-6">
+          <h1 className="mb-2 text-xl font-semibold">룸 특징</h1>
+          {activeFeatures.length > 0 ? (
+            activeFeatures.map((feature) => (
+              <div key={feature} className="flex items-center gap-6 px-4">
+                {FeatureIcons[feature]}
+                <div>
+                  <div className="font-semibold">{FeatureDesc[feature]}</div>
+                  <div className="text-sm text-gray-400">
+                    {FeatureDesc[feature]}
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="flex items-center gap-6 px-4">
+              <GiSadCrab size={24} />
               <div>
-                <div className="font-semibold">{FeatureDesc[feature]}</div>
+                <div className="font-semibold">등록된 숙소 특징이 없습니다</div>
                 <div className="text-sm text-gray-400">
-                  {FeatureDesc[feature]}
+                  호스트가 아직 숙소의 특징을 등록하지 않았어요.
                 </div>
               </div>
             </div>
-          ))}
+          )}
         </div>
 
         <div className="border-b border-gray-300 px-4 py-8 leading-8 text-gray-800">
-          <h1 className="mb-2 text-xl font-semibold">숙소 설명</h1>
+          <h1 className="mb-2 text-xl font-semibold">룸 설명</h1>
           {room?.desc ?? '설명이 없습니다'}
         </div>
 
         <div className="border-b border-gray-300 px-4 py-8 leading-8 text-gray-800">
-          <h1 className="mb-2 text-xl font-semibold">숙박 설명</h1>
+          <h1 className="mb-2 text-xl font-semibold">숙박 여부</h1>
           {room?.bedroomDesc ?? '설명이 없습니다'}
+        </div>
+
+        <div className="border-b border-gray-300 px-4 py-8 leading-8 text-gray-800">
+          <h1 className="mb-2 text-xl font-semibold">캘린더</h1>
+          <div className="mt-4 rounded-lg border border-gray-300 p-5">
+            캘린더가 들어갑니다
+          </div>
+        </div>
+
+        <div className="border-b border-gray-300 px-4 py-8 leading-8 text-gray-800">
+          <h1 className="mb-2 text-xl font-semibold">후기</h1>
+          <div className="mt-4 rounded-lg border border-gray-300 p-5">
+            후기가 들어갑니다
+          </div>
+        </div>
+
+        <div className="border-b border-gray-300 px-4 py-8 leading-8 text-gray-800">
+          <h1 className="mb-2 text-xl font-semibold">호스팅 지역</h1>
+          <div className="mt-4 rounded-lg border border-gray-300 p-5">
+            지도가 들어갑니다
+          </div>
         </div>
       </div>
       <BookingSection room={room} />

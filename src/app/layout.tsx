@@ -4,9 +4,9 @@ import NextLayout, { NextProvider } from './providers'
 import localFont from 'next/font/local'
 
 export const metadata: Metadata = {
-  title: '스터디웨이브 - 스터디룸, 파티룸을 찾아요',
+  title: '룸웨이브 - 룸을 찾아요',
   description:
-    '스터디룸, 파티룸 등 친절한 서비스로 호스트에게 대여할할 수 있는 곳.',
+    '스터디룸, 파티룸, 공유주방 등 친절한 서비스로 호스트에게 대여할 수 있는 곳.',
 }
 
 const aritaDotum = localFont({

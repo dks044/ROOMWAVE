@@ -4,13 +4,13 @@ import Link from 'next/link'
 const Footer = () => {
   return (
     <footer className="bg-gray-50 py-2">
-      <div className="max-w-screen-xl w-full mx-auto p-4 md:flex md:items-center md:justify-between border-b">
+      <div className="mx-auto w-full max-w-screen-xl border-b p-4 md:flex md:items-center md:justify-between">
         <div className="text-sm text-gray-800 sm:text-center">
           {' '}
           ⓒ 2025 <span className="hover:underline">WAVESTUDIO.</span> ALL Rights
           Reserverd.{' '}
         </div>
-        <ul className="flex flex-wrap gap-4 md:gap-6 items-center text-sm text-gray-800 mt-2 sm:mt-0">
+        <ul className="mt-2 flex flex-wrap items-center gap-4 text-sm text-gray-800 sm:mt-0 md:gap-6">
           <li>
             <Link href="/users/login" className="hover:underline">
               로그인
@@ -33,7 +33,7 @@ const Footer = () => {
           </li> */}
         </ul>
       </div>
-      <div className="text-[10px] text-gray-400 mx-auto p-4 max-w-screen-xl">
+      <div className="mx-auto max-w-screen-xl p-4 text-[10px] text-gray-400">
         웹사이트 제공자 : TEAM SYNTHWAVE | 이사: Ajn Jong Yun | 사업자 등록 번호
         : 없음 | 연락처: buzz781@gmail.com | TEAM SYNTHWAVE는 통신판매 중개자로
         Studywave 플랫폼을 통하여 게스트와 호스트 사이에 이루어지는 통신판매의

@@ -8,8 +8,12 @@ export default {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  safelist: ['bg-orange-500', 'bg-blue-500', 'bg-green-500'],
   theme: {
     extend: {
+      fontFamily: {
+        aritadotum: ['AritaDotumKR', 'sans-serif'],
+      },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',

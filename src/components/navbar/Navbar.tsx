@@ -12,6 +12,7 @@ import { formatNumber } from '@/util/util'
 import useFilterModeStore from '@/store/useFilterModeStore'
 import useFilterStore from '@/store/useFilterStroe'
 import Logo from '../common/Logo'
+import { WIX_FONT } from '@/constants'
 
 export default function Navbar() {
   const { showfilter, setShowfilter } = useFilterModeStore()
@@ -34,8 +35,13 @@ export default function Navbar() {
         className="hidden grow basis-0 cursor-pointer text-lg font-semibold text-brand sm:flex sm:gap-2 sm:text-xl"
         onClick={() => router.push('/')}
       >
-        <Logo size={55} className="hidden rounded-lg sm:flex" />
-        <div className="my-auto transition hover:text-pressedBrand">
+        {/* <Logo size={55} className="hidden rounded-lg sm:flex" /> */}
+        <div
+          className={cn(
+            'my-auto font-semibold transition hover:text-pressedBrand',
+            WIX_FONT.className,
+          )}
+        >
           ROOMWAVE
         </div>
       </div>
