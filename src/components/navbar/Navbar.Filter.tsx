@@ -28,20 +28,20 @@ const NavbarFilter = () => {
   }
 
   return (
-    <div className="absolute top-[21.913rem] sm:top-[4.375rem] border border-gray-200 px-8 py-6 flex flex-col bg-white w-full mx-auto inset-x-0 sm:max-w-3xl sm:w-[780px] rounded-xl left-0">
-      <div className="text-sm font-semibold flex justify-between">
+    <div className="absolute inset-x-0 left-0 top-[21.913rem] mx-auto flex w-full flex-col rounded-xl border border-gray-200 bg-white px-8 py-6 sm:top-[4.375rem] sm:w-[780px] sm:max-w-3xl">
+      <div className="flex justify-between text-sm font-semibold">
         {/* 필터 제목 */}
         {FILTER_TITLE[detailFilter as keyof typeof FILTER_TITLE]}
       </div>
       {/* 현재 상세 디테일이 '위치' 일 경우 */}
       {detailFilter === 'location' && (
-        <div className="flex flex-wrap gap-4 mt-4">
+        <div className="mt-4 flex flex-wrap gap-4">
           {LOCATION_CITIES.map((value) => (
             <button
               key={value}
               type="button"
               className={cn(
-                'border rounded-lg px-5 py-2.5 hover:bg-gray-200 focus:bg-subBrand transition',
+                'rounded-lg border px-5 py-2.5 transition hover:bg-gray-200 focus:bg-subBrand',
                 {
                   'bg-brand text-white': filterValue.location === value,
                 },
@@ -62,7 +62,7 @@ const NavbarFilter = () => {
       {/* 현재 상세 디테일이 '체크인' 이거나 '체크아웃' 일 경우 */}
       {(detailFilter === 'checkIn' || detailFilter === 'checkOut') && (
         <Calendar
-          className="mt-8 mx-auto"
+          className="mx-auto mt-8"
           onChange={onChange}
           minDate={
             detailFilter === 'checkIn'
@@ -82,14 +82,14 @@ const NavbarFilter = () => {
       {/* 현재 상세 디테일이 가격 일 경우 */}
       {detailFilter === 'hourlyPrice' && (
         <>
-          <div className="mt-4 border border-gray-200 rounded-md w-full flex justify-between py-2 pl-4 pr-6 relative">
-            <div className="font-semibold text-sm">
+          <div className="relative mt-4 flex w-full justify-between rounded-md border border-gray-200 py-2 pl-4 pr-6">
+            <div className="text-sm font-semibold">
               <div>가격(시간당) 설정</div>
               <div className="text-gray-500">가격을 입력해주세요</div>
             </div>
             <input
               value={filterValue.hourlyPrice}
-              className="w-3 sm:w-auto text-right"
+              className="w-3 text-right sm:w-auto"
               type="text"
               placeholder="ex) 30,000"
               onChange={(e) => {
@@ -106,19 +106,19 @@ const NavbarFilter = () => {
       {/* 현재 상세 디테일이 게스트일 경우 */}
       {detailFilter === 'guest' && (
         <>
-          <div className="mt-4 border border-gray-200 py-2 px-4 rounded-lg flex justify-between items-center ">
-            <div className="font-semibold text-sm">
+          <div className="mt-4 flex items-center justify-between rounded-lg border border-gray-200 px-4 py-2">
+            <div className="text-sm font-semibold">
               게스트 수 추가{' '}
-              <div className="text-gray-500 text-xs">
+              <div className="text-xs text-gray-500">
                 참가 인원을 입력해주세요
               </div>
             </div>
 
-            <div className="flex gap-4 items-center justify-center">
+            <div className="flex items-center justify-center gap-4">
               <button
                 type="button"
                 disabled={filterValue?.guest <= 0}
-                className="rounded-full w-8 h-8 hover:border-black transition disabled:border-gray-200"
+                className="h-8 w-8 rounded-full transition hover:border-black disabled:border-gray-200"
                 onClick={() => {
                   setFilterValue({
                     ...filterValue,
@@ -136,7 +136,7 @@ const NavbarFilter = () => {
               <button
                 type="button"
                 disabled={filterValue?.guest >= 20}
-                className="rounded-full w-8 h-8 hover:border-black transition disabled:border-gray-200"
+                className="h-8 w-8 rounded-full transition hover:border-black disabled:border-gray-200"
                 onClick={() => {
                   setFilterValue({
                     ...filterValue,

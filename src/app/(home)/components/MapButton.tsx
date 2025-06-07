@@ -8,7 +8,7 @@ const MapButton = () => {
   return (
     <button
       onClick={() => router.push('/map')}
-      className="flex gap-2 items-center bg-black rounded-full text-white px-5 py-3.5 shadow-sm hover:shadow-lg mx-auto sticky bottom-12"
+      className="sticky bottom-12 mx-auto flex items-center gap-2 rounded-full bg-black px-5 py-3.5 text-white shadow-sm hover:shadow-lg"
     >
       지도 표시하기
       <LuMap className="text-xs" />

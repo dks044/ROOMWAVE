@@ -7,7 +7,7 @@ export const FILTER_TITLE = {
     <>
       <div>체크인 날짜 설정하기</div>
       <div className="flex flex-row gap-4">
-        <div className="text-xs text-gray-500 my-auto">
+        <div className="my-auto text-xs text-gray-500">
           당일만 예약하시나요?
         </div>
         <IsJustOneDayCheckBox />

@@ -23,7 +23,7 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        'h-20 z-10 border border-b-gray-20 w-full shadow-sm p-4 sm:px-10 flex justify-between items-center align-middle fixed top-0 bg-white',
+        'border-b-gray-20 fixed top-0 z-10 flex h-20 w-full items-center justify-between border bg-white p-4 align-middle shadow-sm sm:px-10',
         {
           '!h-44': showfilter === true,
           '!items-start': showfilter === true,
@@ -31,37 +31,43 @@ export default function Navbar() {
       )}
     >
       <div
-        className="grow basis-0 hidden font-semibold text-lg sm:text-xl text-brand cursor-pointer sm:flex sm:gap-2"
+        className="hidden grow basis-0 cursor-pointer text-lg font-semibold text-brand sm:flex sm:gap-2 sm:text-xl"
         onClick={() => router.push('/')}
       >
-        <Logo size={55} className="hidden sm:flex rounded-lg" />
-        <div className="my-auto hover:text-pressedBrand transition">
+        <Logo size={55} className="hidden rounded-lg sm:flex" />
+        <div className="my-auto transition hover:text-pressedBrand">
           ROOMWAVE
         </div>
       </div>
       {showfilter === false ? (
         <div
-          className="w-full sm:w-[280px] border py-1.5 border-gray-200 rounded-full shadow hover:shadow-lg cursor-pointer flex justify-between pl-6 pr-2 transition"
+          className="group relative w-full cursor-pointer sm:w-[280px]"
           onClick={() => setShowfilter(true)}
         >
-          <div className="flex justify-center gap-1">
-            <div className="my-auto font-semibold text-sm">어디든지</div>
-            <RxDividerVertical className="text-gray-200 my-auto text-2xl" />
-            <div className="my-auto font-semibold text-sm">언제든</div>
-            <RxDividerVertical className="text-gray-200 my-auto text-2xl" />
-            <div className="my-auto font-semibold text-sm">게스트</div>
+          {/* 그라디언트 테두리 */}
+          <div className="group-hover:duration-2000 absolute -inset-1 rounded-full bg-gradient-to-r from-[#36d1dc] to-[#5b86e5] opacity-25 blur-sm transition duration-300 group-hover:opacity-100" />
+
+          {/* 내용 */}
+          <div className="relative flex justify-between rounded-full bg-white py-1.5 pl-6 pr-2 shadow">
+            <div className="flex justify-center gap-1">
+              <div className="my-auto text-sm font-semibold">어디든지</div>
+              <RxDividerVertical className="my-auto text-2xl text-gray-200" />
+              <div className="my-auto text-sm font-semibold">언제든</div>
+              <RxDividerVertical className="my-auto text-2xl text-gray-200" />
+              <div className="my-auto text-sm font-semibold">게스트</div>
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowfilter(false)}
+              className="my-auto h-8 w-8 rounded-full bg-brand text-white"
+            >
+              <AiOutlineSearch className="m-auto text-lg font-semibold" />
+            </button>
           </div>
-          <button
-            type="button"
-            onClick={() => setShowfilter(false)}
-            className="bg-brand text-white rounded-full w-8 h-8 my-auto"
-          >
-            <AiOutlineSearch className="text-lg m-auto font-semibold" />
-          </button>
         </div>
       ) : (
-        <div className="sm:w-[340px] cursor-pointer w-full relative">
-          <div className="flex justify-center gap-7 h-14 text-center items-center">
+        <div className="relative w-full cursor-pointer sm:w-[340px]">
+          <div className="flex h-14 items-center justify-center gap-7 text-center">
             <button
               type="button"
               className="font-semibold underline underline-offset-8"
@@ -84,30 +90,26 @@ export default function Navbar() {
             </button>
             <button
               type="button"
-              className="underline underline-offset-8 text-gray-500 hover:text-black"
+              className="text-gray-500 underline underline-offset-8 hover:text-black"
               onClick={() => setShowfilter(false)}
             >
               필터 닫기
             </button>
           </div>
-          <div
-            className="w-[90%] sm:max-w-3xl flex flex-col sm:flex-row border
-           border-gray-200 rounded-lg sm:py-0 sm:rounded-full shadow-sm bg-white hover:shadow-lg cursor-pointer
-           justify-between fixed top-20 inset-x-0 mx-auto transition"
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-5 w-full relative pl-2">
+          <div className="fixed inset-x-0 top-20 mx-auto flex w-[90%] cursor-pointer flex-col justify-between rounded-lg border border-gray-200 bg-white shadow-sm transition hover:shadow-lg sm:max-w-3xl sm:flex-row sm:rounded-full sm:py-0">
+            <div className="relative grid w-full grid-cols-1 pl-2 sm:grid-cols-5">
               <button
                 type="button"
                 onClick={() => setDetailFilter('location')}
                 className={cn(
-                  'font-semibold text-xs rounded-full transition hover:bg-gray-100 py-3 px-6 text-left',
+                  'rounded-full px-6 py-3 text-left text-xs font-semibold transition hover:bg-gray-100',
                   {
-                    'shadow bg-white': detailFilter === 'location',
+                    'bg-white shadow': detailFilter === 'location',
                   },
                 )}
               >
                 위치
-                <div className="text-gray-500 text-xs mt-1">
+                <div className="mt-1 text-xs text-gray-500">
                   {filterValue?.location || '위치 검색'}
                 </div>
               </button>
@@ -115,14 +117,14 @@ export default function Navbar() {
                 type="button"
                 onClick={() => setDetailFilter('checkIn')}
                 className={cn(
-                  'font-semibold text-xs rounded-full transition hover:bg-gray-100 py-3 px-6 text-left',
+                  'rounded-full px-6 py-3 text-left text-xs font-semibold transition hover:bg-gray-100',
                   {
-                    'shadow bg-white': detailFilter === 'checkIn',
+                    'bg-white shadow': detailFilter === 'checkIn',
                   },
                 )}
               >
                 체크인
-                <div className="text-gray-500 text-xs mt-1">
+                <div className="mt-1 text-xs text-gray-500">
                   {filterValue?.checkIn || '날짜 추가'}
                 </div>
               </button>
@@ -130,15 +132,15 @@ export default function Navbar() {
                 type="button"
                 onClick={() => setDetailFilter('checkOut')}
                 className={cn(
-                  'font-semibold text-xs rounded-full transition hover:bg-gray-100 py-3 px-6 text-left disabled:cursor-not-allowed',
+                  'rounded-full px-6 py-3 text-left text-xs font-semibold transition hover:bg-gray-100 disabled:cursor-not-allowed',
                   {
-                    'shadow bg-white': detailFilter === 'checkOut',
+                    'bg-white shadow': detailFilter === 'checkOut',
                   },
                 )}
                 disabled={isJustOneDay}
               >
                 체크아웃
-                <div className="text-gray-500 text-xs mt-1">
+                <div className="mt-1 text-xs text-gray-500">
                   {isJustOneDay
                     ? '당일'
                     : filterValue?.checkOut
@@ -150,14 +152,14 @@ export default function Navbar() {
                 type="button"
                 onClick={() => setDetailFilter('hourlyPrice')}
                 className={cn(
-                  'font-semibold text-xs rounded-full transition hover:bg-gray-100 py-3 px-6 text-left',
+                  'rounded-full px-6 py-3 text-left text-xs font-semibold transition hover:bg-gray-100',
                   {
-                    'shadow bg-white': detailFilter === 'hourlyPrice',
+                    'bg-white shadow': detailFilter === 'hourlyPrice',
                   },
                 )}
               >
                 가격
-                <div className="text-gray-500 text-xs mt-1">
+                <div className="mt-1 text-xs text-gray-500">
                   {`${formatNumber(filterValue?.hourlyPrice)}원` || '가격 검색'}
                 </div>
               </button>
@@ -165,14 +167,14 @@ export default function Navbar() {
                 type="button"
                 onClick={() => setDetailFilter('guest')}
                 className={cn(
-                  'font-semibold text-xs rounded-full transition hover:bg-gray-100 py-3 px-6 text-left',
+                  'rounded-full px-6 py-3 text-left text-xs font-semibold transition hover:bg-gray-100',
                   {
-                    'shadow bg-white': detailFilter === 'guest',
+                    'bg-white shadow': detailFilter === 'guest',
                   },
                 )}
               >
                 참석자
-                <div className="text-gray-500 text-xs mt-1">
+                <div className="mt-1 text-xs text-gray-500">
                   {`${filterValue?.guest}명` || '게스트 추가'}
                 </div>
               </button>
@@ -181,43 +183,42 @@ export default function Navbar() {
             <button
               type="button"
               role="button"
-              className="bg-brand mb-2 text-white rounded-full h-10 mx-4 sm:w-24 my-auto flex justify-center gap-1 px-3 py-2
-              hover:shadow hover:bg-blue-800 transition"
+              className="mx-4 my-auto mb-2 flex h-10 justify-center gap-1 rounded-full bg-brand px-3 py-2 text-white transition hover:bg-blue-800 hover:shadow sm:w-24"
               aria-label="필터, 디테일필터 초기화"
               onClick={() => {
                 setShowfilter(false)
                 setDetailFilter(null)
               }}
             >
-              <AiOutlineSearch className="font-semibold text-xl my-auto" />
+              <AiOutlineSearch className="my-auto text-xl font-semibold" />
               <div className="my-auto">검색</div>
             </button>
           </div>
         </div>
       )}
 
-      <div className="grow basis-0 hidden md:flex gap-4 align-middle justify-end relative">
+      <div className="relative hidden grow basis-0 justify-end gap-4 align-middle md:flex">
         <button
           type="button"
-          className="font-semibold text-sm my-auto px-4 py-3 rounded-full hover:bg-gray-50 truncate overflow-hidden "
+          className="my-auto overflow-hidden truncate rounded-full px-4 py-3 text-sm font-semibold hover:bg-gray-50"
         >
           당신의 공간을 등록해주세요
         </button>
         <button
           type="button"
           onClick={() => setShowMenu((val) => !val)}
-          className="flex align-middle gap-3 rounded-full border border-gray-20 shadow-sm px-4 py-3 my-auto hover:shadow-lg"
+          className="border-gray-20 my-auto flex gap-3 rounded-full border px-4 py-3 align-middle shadow-sm hover:shadow-lg"
         >
           <AiOutlineMenu />
           <AiOutlineUser />
         </button>
         {showMenu && (
-          <div className="border border-gray-200 shadow-lg py-2 flex flex-col absolute top-12 bg-white w-60 rounded-lg">
+          <div className="absolute top-12 flex w-60 flex-col rounded-lg border border-gray-200 bg-white py-2 shadow-lg">
             {menus?.map((menu) => (
               <button
                 type="button"
                 key={menu.id}
-                className="h-10 hover:bg-gray-50 pl-3 text-sm text-gray-700 text-left"
+                className="h-10 pl-3 text-left text-sm text-gray-700 hover:bg-gray-50"
                 onClick={() => router.push(menu.url)}
               >
                 {menu.title}

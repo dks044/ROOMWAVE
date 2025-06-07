@@ -1,3 +1,7 @@
+export interface ParamsProps {
+  params: { id: string }
+}
+
 export interface RoomType {
   id: number
   images: string[]
@@ -5,8 +9,27 @@ export interface RoomType {
   address: string
   price: number
   category: string
+  desc: string
+  bedroomDesc: string
   lat: string
   lng: string
+  user?: UserType
+  userId: number
+  freeCancel: boolean
+  officeSpace: boolean
+  hasShower: boolean
+  hasAirCondition: boolean
+  hasWifi: boolean
+  hasFreeParking: boolean
+}
+
+interface UserType {
+  id: number
+  email: string
+  name?: string
+  image?: string
+  desc?: string
+  rooms?: RoomType[]
 }
 
 export interface FaqType {

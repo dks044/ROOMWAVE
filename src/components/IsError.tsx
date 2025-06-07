@@ -8,16 +8,16 @@ interface IsError {
 }
 const IsError = ({ text = '예상치 못한 에러가 발생했습니다' }: IsError) => {
   return (
-    <main className="mt-20 p-10 min-h-[80vh] flex w-full h-full items-center justify-center px-10 py-20">
-      <article className="flex-row justify-center items-center w-full">
+    <main className="mt-20 flex h-full min-h-[80vh] w-full items-center justify-center p-10 px-10 py-20">
+      <article className="w-full flex-row items-center justify-center">
         <LottieAnimation
-          className="w-48 h-48 mx-auto"
+          className="mx-auto h-48 w-48"
           lottieAnimationRoute={ERROR_ANIMATION}
         />
-        <div className="text-md sm:text-2xl animate-bounce text-center">
+        <div className="text-md animate-bounce text-center sm:text-2xl">
           예상치 못한 에러가 발생했습니다
         </div>
-        <div className="text-xs text-center text-gray-400 px-16">{text}</div>
+        <div className="px-16 text-center text-xs text-gray-400">{text}</div>
       </article>
     </main>
   )

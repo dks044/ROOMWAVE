@@ -7,6 +7,8 @@ import { RoomType } from '@/types'
 
 import Script from 'next/script'
 import { SetStateAction } from 'react'
+import LottieAnimation from '../LottieAnimation'
+import { AIRPLANE_LOADING } from '@/constants/lottie'
 
 interface MapProps {
   setSelectedRoom: React.Dispatch<SetStateAction<RoomType | null>>
@@ -61,11 +63,11 @@ export default function Map({ setSelectedRoom }: MapProps) {
         })
 
         // 마커에 마우스오버 이벤트를 등록합니다
-        window.kakao.maps.event.addListener(marker, 'mouseover', function () {
+        window.kakao.maps.event.addListener(marker, 'click', function () {
           // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
           setSelectedRoom(room)
         })
-        window.kakao.maps.event.addListener(map, 'mouseover', function () {
+        window.kakao.maps.event.addListener(map, 'click', function () {
           setSelectedRoom(null)
         })
 
@@ -80,13 +82,20 @@ export default function Map({ setSelectedRoom }: MapProps) {
 
   return (
     <>
-      {isSuccess && (
+      {isSuccess ? (
         <Script
           strategy="afterInteractive"
           type="text/javascript"
           src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_CLIENT}&autoload=false`}
           onReady={loadKakaoMap}
         />
+      ) : (
+        <main className="mt-20 flex h-[50vh] w-full items-center justify-center">
+          <LottieAnimation
+            className="h-52 w-52"
+            lottieAnimationRoute={AIRPLANE_LOADING}
+          />
+        </main>
       )}
       <div id="map" className="h-screen w-full" />
     </>

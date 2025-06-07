@@ -4,9 +4,9 @@ import React from 'react'
 
 const Loading = () => {
   return (
-    <main className="mt-20 flex w-full h-[50vh] items-center justify-center">
+    <main className="mt-20 flex min-h-[80vh] justify-center p-10">
       <LottieAnimation
-        className="w-52 h-52"
+        className="mt-20 h-52 w-52"
         lottieAnimationRoute={AIRPLANE_LOADING}
       />
     </main>

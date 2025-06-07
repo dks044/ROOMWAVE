@@ -20,6 +20,14 @@ import { RiGalleryView } from 'react-icons/ri' // 갤러리
 import { AiOutlineAudio } from 'react-icons/ai' // 녹음실
 import { FaHome } from 'react-icons/fa' // 독립오피스
 import { MdHouse } from 'react-icons/md' // 가정집
+import { RoomType } from '@/types'
+
+import { FaParking } from 'react-icons/fa'
+import { FaShower } from 'react-icons/fa'
+import { MdOutlineCancel } from 'react-icons/md'
+import { LuAirVent } from 'react-icons/lu'
+import { LuWifi } from 'react-icons/lu'
+import { MdOutlineMeetingRoom } from 'react-icons/md'
 
 export const SERVER_SIDE_API_URL =
   process.env.NODE_ENV === 'production'
@@ -64,3 +72,41 @@ export const DEFAULT_LAT = 37.5665
 export const DEFAULT_LNG = 126.978
 
 export const ZOOM_LEVEL = 6
+
+export const FEATURE_TYPE = {
+  FREE_CANCEL: 'FREE_CANCEL',
+  OFFICE_SPACE: 'OFFICE_SPACE',
+  HAS_SHOWER: 'HAS_SHOWER',
+  HAS_AIR_CONDITION: 'HAS_AIR_CONDITION',
+  HAS_WIFI: 'HAS_WIFI',
+  HAS_FREE_PARKING: 'HAS_FREE_PARKING',
+} as const
+
+export const featureKeyMap: Record<FeatureType, keyof RoomType> = {
+  [FEATURE_TYPE.FREE_CANCEL]: 'freeCancel',
+  [FEATURE_TYPE.OFFICE_SPACE]: 'officeSpace',
+  [FEATURE_TYPE.HAS_SHOWER]: 'hasShower',
+  [FEATURE_TYPE.HAS_AIR_CONDITION]: 'hasAirCondition',
+  [FEATURE_TYPE.HAS_WIFI]: 'hasWifi',
+  [FEATURE_TYPE.HAS_FREE_PARKING]: 'hasFreeParking',
+}
+
+export type FeatureType = (typeof FEATURE_TYPE)[keyof typeof FEATURE_TYPE]
+
+export const FeatureDesc: Record<FeatureType, string> = {
+  [FEATURE_TYPE.FREE_CANCEL]: '무료 취소 가능합니다',
+  [FEATURE_TYPE.OFFICE_SPACE]: '사무 공간이 제공됩니다',
+  [FEATURE_TYPE.HAS_SHOWER]: '샴푸 및 욕실 용품이 구비되어 있습니다',
+  [FEATURE_TYPE.HAS_AIR_CONDITION]: '에어컨이 제공됩니다',
+  [FEATURE_TYPE.HAS_WIFI]: '와이파이를 이용할 수 있습니다',
+  [FEATURE_TYPE.HAS_FREE_PARKING]: '무료 주차가 가능합니다',
+}
+
+export const FeatureIcons: Record<FeatureType, React.ReactNode> = {
+  [FEATURE_TYPE.FREE_CANCEL]: <MdOutlineCancel size={24} />,
+  [FEATURE_TYPE.OFFICE_SPACE]: <MdOutlineMeetingRoom size={24} />,
+  [FEATURE_TYPE.HAS_SHOWER]: <FaShower size={24} />,
+  [FEATURE_TYPE.HAS_AIR_CONDITION]: <LuAirVent size={24} />,
+  [FEATURE_TYPE.HAS_WIFI]: <LuWifi size={24} />,
+  [FEATURE_TYPE.HAS_FREE_PARKING]: <FaParking size={24} />,
+}
