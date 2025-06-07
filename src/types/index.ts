@@ -1,3 +1,5 @@
+export type PageParams = Promise<{ id: string }>
+
 export interface RoomType {
   id: number
   images: string[]

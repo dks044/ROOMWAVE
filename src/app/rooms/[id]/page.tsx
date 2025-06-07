@@ -1,11 +1,10 @@
 import { getRoomByid } from '@/apis/room'
 import FeatureSection from '@/components/room_detail/FeatureSection'
 import HeaderSection from '@/components/room_detail/HeaderSection'
-import { RoomType } from '@/types'
-import React from 'react'
+import { PageParams, RoomType } from '@/types'
 
-const RoomPage = async ({ params }: { params: { id: string } }) => {
-  const { id } = params
+const RoomPage = async ({ params }: { params: PageParams }) => {
+  const { id } = await params
   const room: RoomType = await getRoomByid(id)
 
   return (
