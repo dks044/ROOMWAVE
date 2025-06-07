@@ -1,7 +1,3 @@
-export interface ParamsProps {
-  params: { id: string }
-}
-
 export interface RoomType {
   id: number
   images: string[]
