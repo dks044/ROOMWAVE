@@ -13,6 +13,8 @@ import useFilterModeStore from '@/store/useFilterModeStore'
 import useFilterStore from '@/store/useFilterStroe'
 import Logo from '../common/Logo'
 import { WIX_FONT } from '@/constants'
+import LottieAnimation from '../LottieAnimation'
+import { STAR_ANIMATION, WAVE_ANIMATION } from '@/constants/lottie'
 
 export default function Navbar() {
   const { showfilter, setShowfilter } = useFilterModeStore()
@@ -24,7 +26,7 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        'border-b-gray-20 fixed top-0 z-10 flex h-20 w-full items-center justify-between border bg-white p-4 align-middle shadow-sm sm:px-10',
+        'border-b-gray-20 fixed top-0 z-20 flex h-20 w-full items-center justify-between border bg-white p-4 align-middle shadow-sm sm:px-10',
         {
           '!h-44': showfilter === true,
           '!items-start': showfilter === true,
@@ -47,20 +49,27 @@ export default function Navbar() {
       </div>
       {showfilter === false ? (
         <div
-          className="group relative w-full cursor-pointer sm:w-[280px]"
+          className="group relative w-full cursor-pointer sm:w-[300px]"
           onClick={() => setShowfilter(true)}
         >
           {/* 그라디언트 테두리 */}
           <div className="group-hover:duration-2000 absolute -inset-1 rounded-full bg-gradient-to-r from-[#36d1dc] to-[#5b86e5] opacity-25 blur-sm transition duration-300 group-hover:opacity-100" />
 
           {/* 내용 */}
-          <div className="relative flex justify-between rounded-full bg-white py-1.5 pl-6 pr-2 shadow">
+          <div className="relative flex justify-between rounded-full bg-white py-1.5 pl-3 pr-2 shadow">
             <div className="flex justify-center gap-1">
-              <div className="my-auto text-sm font-semibold">어디든지</div>
+              {/* <div className="my-auto text-sm font-semibold">어디든지</div>
               <RxDividerVertical className="my-auto text-2xl text-gray-200" />
               <div className="my-auto text-sm font-semibold">언제든</div>
               <RxDividerVertical className="my-auto text-2xl text-gray-200" />
-              <div className="my-auto text-sm font-semibold">게스트</div>
+              <div className="my-auto text-sm font-semibold">게스트</div> */}
+              <LottieAnimation
+                lottieAnimationRoute={WAVE_ANIMATION}
+                className="my-auto h-14 w-14 sm:h-12 sm:w-14"
+              />
+              <span className="my-auto font-semibold sm:text-sm">
+                나만의 공간을 찾고 있나요?
+              </span>
             </div>
             <button
               type="button"

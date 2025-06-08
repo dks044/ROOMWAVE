@@ -8,7 +8,7 @@ import { RoomType } from '@/types'
 import Script from 'next/script'
 import { SetStateAction } from 'react'
 import LottieAnimation from '../LottieAnimation'
-import { AIRPLANE_LOADING } from '@/constants/lottie'
+import { AIRPLANE_LOADING, WAVE_LOADING_ANIMATION } from '@/constants/lottie'
 
 interface MapProps {
   setSelectedRoom: React.Dispatch<SetStateAction<RoomType | null>>
@@ -93,7 +93,7 @@ export default function Map({ setSelectedRoom }: MapProps) {
         <main className="mt-20 flex h-[50vh] w-full items-center justify-center">
           <LottieAnimation
             className="h-52 w-52"
-            lottieAnimationRoute={AIRPLANE_LOADING}
+            lottieAnimationRoute={WAVE_LOADING_ANIMATION}
           />
         </main>
       )}

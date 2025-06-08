@@ -28,7 +28,7 @@ const NavbarFilter = () => {
   }
 
   return (
-    <div className="absolute inset-x-0 left-0 top-[21.913rem] mx-auto flex w-full flex-col rounded-xl border border-gray-200 bg-white px-8 py-6 sm:top-[4.375rem] sm:w-[780px] sm:max-w-3xl">
+    <div className="absolute inset-x-0 left-0 top-[21.913rem] z-20 mx-auto flex w-full flex-col rounded-xl border border-gray-200 bg-white px-8 py-6 sm:top-[4.375rem] sm:w-[780px] sm:max-w-3xl">
       <div className="flex justify-between text-sm font-semibold">
         {/* 필터 제목 */}
         {FILTER_TITLE[detailFilter as keyof typeof FILTER_TITLE]}

@@ -47,7 +47,7 @@ export default function RoomwaveSlider() {
         ))}
       </CarouselContent>
       <CarouselPrevious className="left-1" />
-      <CarouselNext className="right-1" />
+      <CarouselNext className="right-5" />
     </Carousel>
   )
 }

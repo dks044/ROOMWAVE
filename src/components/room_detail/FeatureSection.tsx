@@ -85,13 +85,6 @@ const FeatureSection = ({ room }: { room: RoomType }) => {
             후기가 들어갑니다
           </div>
         </div>
-
-        <div className="border-b border-gray-300 px-4 py-8 leading-8 text-gray-800">
-          <h1 className="mb-2 text-xl font-semibold">호스팅 지역</h1>
-          <div className="mt-4 rounded-lg border border-gray-300 p-5">
-            지도가 들어갑니다
-          </div>
-        </div>
       </div>
       <BookingSection room={room} />
     </section>
