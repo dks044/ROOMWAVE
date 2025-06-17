@@ -1,21 +1,27 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import GithubProvider from 'next-auth/providers/github'
-import GoogleProvider from 'next-auth/providers/google'
 
+import GoogleProvider from 'next-auth/providers/google'
+import KakaoProvider from 'next-auth/providers/kakao'
+import NaverProvider from 'next-auth/providers/naver'
 import { AuthOptions } from 'next-auth'
 import { default as prisma } from './prismadb'
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_ID! as string,
-      clientSecret: process.env.GITHUB_SECRET! as string,
+    KakaoProvider({
+      clientId: process.env.KAKAO_CLIENT_ID! as string,
+      clientSecret: process.env.KAKAO_CLIENT_SECRET! as string,
       allowDangerousEmailAccountLinking: true,
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID! as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET! as string,
+      allowDangerousEmailAccountLinking: true,
+    }),
+    NaverProvider({
+      clientId: process.env.NAVER_CLIENT_ID! as string,
+      clientSecret: process.env.NAVER_CLIENT_SECRET! as string,
       allowDangerousEmailAccountLinking: true,
     }),
     // CredentialsProvider({
@@ -74,33 +80,33 @@ export const authOptions: AuthOptions = {
       return token
     },
     signIn: async ({ user, account, profile }) => {
-      if (account) {
-        if (
-          (account.provider === 'github' || account.provider === 'google') &&
-          profile
-        ) {
-          const email = profile.email
+      if (account && profile) {
+        const provider = account.provider
 
-          if (!email) {
-            throw new Error('Email not provided')
-          }
+        const providerId = (profile as any).id ?? crypto.randomUUID()
+        let email = profile.email
 
-          const existingUser = await prisma.user.findUnique({
-            where: { email },
+        // ✅ 이메일이 없을 경우 대체 이메일 생성
+        if (!email) {
+          email = `${providerId}@${provider}.user`
+        }
+
+        const existingUser = await prisma.user.findUnique({
+          where: { email },
+        })
+
+        if (!existingUser) {
+          await prisma.user.create({
+            data: {
+              email,
+              name: profile.name ?? '이름없음',
+              image: profile.image,
+              oauth: true,
+            },
           })
-
-          if (!existingUser) {
-            await prisma.user.create({
-              data: {
-                email: email,
-                name: profile.name,
-                image: profile.image,
-                oauth: true,
-              },
-            })
-          }
         }
       }
+
       return true
     },
   },

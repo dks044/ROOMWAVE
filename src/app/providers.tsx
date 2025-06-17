@@ -5,6 +5,7 @@ import useFilterModeStore from '@/store/useFilterModeStore'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { ReactNode, useEffect, useRef } from 'react'
+import { ToastContainer } from 'react-toastify'
 
 interface Props {
   children?: ReactNode
@@ -15,6 +16,7 @@ const queryClient = new QueryClient()
 export function NextProvider({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
+      <ToastContainer />
       <ReactQueryDevtools />
       {children}
     </QueryClientProvider>

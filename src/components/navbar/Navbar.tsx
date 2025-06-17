@@ -1,22 +1,22 @@
 'use client'
 
 import cn from 'classnames'
-import { RxDividerVertical } from 'react-icons/rx'
-import { AiOutlineSearch } from 'react-icons/ai'
+import { AiOutlineSearch, AiOutlineUser } from 'react-icons/ai'
 import { AiOutlineMenu } from 'react-icons/ai'
-import { AiOutlineUser } from 'react-icons/ai'
 import useNavigation from '@/hooks/useNavigation'
 import NavbarFilter from './Navbar.Filter'
 import useNav from '@/hooks/useNav'
 import { formatNumber } from '@/util/util'
 import useFilterModeStore from '@/store/useFilterModeStore'
 import useFilterStore from '@/store/useFilterStroe'
-import Logo from '../common/Logo'
 import { WIX_FONT } from '@/constants'
 import LottieAnimation from '../LottieAnimation'
-import { STAR_ANIMATION, WAVE_ANIMATION } from '@/constants/lottie'
+import { WAVE_ANIMATION } from '@/constants/lottie'
+import { useSession } from 'next-auth/react'
 
 export default function Navbar() {
+  const { status } = useSession()
+  const session = useSession()
   const { showfilter, setShowfilter } = useFilterModeStore()
   const { menus, router } = useNavigation()
   const { showMenu, setShowMenu } = useNav()
@@ -225,7 +225,16 @@ export default function Navbar() {
           className="border-gray-20 my-auto flex gap-3 rounded-full border px-4 py-3 align-middle shadow-sm hover:shadow-lg"
         >
           <AiOutlineMenu />
-          <AiOutlineUser />
+          {status === 'authenticated' && session?.data?.user?.image ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={session?.data?.user?.image}
+              alt="profile image"
+              className="my-auto h-4 w-4 rounded-full"
+            />
+          ) : (
+            <AiOutlineUser />
+          )}
         </button>
         {showMenu && (
           <div className="absolute top-12 flex w-60 flex-col rounded-lg border border-gray-200 bg-white py-2 shadow-lg">
@@ -234,7 +243,13 @@ export default function Navbar() {
                 type="button"
                 key={menu.id}
                 className="h-10 pl-3 text-left text-sm text-gray-700 hover:bg-gray-50"
-                onClick={() => router.push(menu.url)}
+                onClick={() => {
+                  if (menu.action) {
+                    menu.action()
+                  } else if (menu.url) {
+                    router.push(menu.url)
+                  }
+                }}
               >
                 {menu.title}
               </button>

@@ -20,8 +20,14 @@ export interface RoomType {
   hasWifi: boolean
   hasFreeParking: boolean
 }
+export interface NavMenuItem {
+  id: number
+  title: string
+  url?: string
+  action?: () => void
+}
 
-interface UserType {
+export interface UserType {
   id: number
   email: string
   name?: string
