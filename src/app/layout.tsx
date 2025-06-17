@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import NextLayout, { NextProvider } from './providers'
 import localFont from 'next/font/local'
+import AuthContext from './AuthContext'
 
 export const metadata: Metadata = {
   title: '룸웨이브 - 룸을 찾아요',
@@ -24,7 +25,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={aritaDotum.className}>
         <NextProvider>
-          <NextLayout>{children}</NextLayout>
+          <AuthContext>
+            <NextLayout>{children}</NextLayout>
+          </AuthContext>
         </NextProvider>
       </body>
     </html>

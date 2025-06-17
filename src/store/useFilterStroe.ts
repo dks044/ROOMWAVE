@@ -1,6 +1,7 @@
 import { DetailFilterType, FilterProps } from '@/types/filter'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { immer } from 'zustand/middleware/immer'
 
 interface FilterStoreInterface {
   detailFilter: DetailFilterType | null
@@ -13,7 +14,7 @@ interface FilterStoreInterface {
 
 const useFilterStore = create<FilterStoreInterface>()(
   persist(
-    (set) => ({
+    immer((set) => ({
       detailFilter: 'location',
       filterValue: {
         location: '',
@@ -24,16 +25,22 @@ const useFilterStore = create<FilterStoreInterface>()(
         category: '',
       },
       isJustOneDay: false,
-      setIsJustOneDay: (isJustOneDay: boolean) => {
-        set({ isJustOneDay })
+      setIsJustOneDay: (isJustOneDay) => {
+        set((state) => {
+          state.isJustOneDay = isJustOneDay
+        })
       },
-      setDetailFilter: (detailFilter: DetailFilterType | null) => {
-        set({ detailFilter })
+      setDetailFilter: (detailFilter) => {
+        set((state) => {
+          state.detailFilter = detailFilter
+        })
       },
-      setFilterValue: (filterValue: FilterProps) => {
-        set({ filterValue })
+      setFilterValue: (newValue) => {
+        set((state) => {
+          state.filterValue = newValue
+        })
       },
-    }),
+    })),
     {
       name: 'FilterStorage',
     },
