@@ -4,6 +4,7 @@ import NOT_FOUND from '../../public/lottie/404_NOT_FOUND.json'
 import Star from '../../public/lottie/Star.json'
 import Wave from '../../public/lottie/Wave.json'
 import WaveLoading from '../../public/lottie/WaveLoading.json'
+import WaveGradient from '../../public/lottie/WaveGradient.json'
 
 /**@info 비행기 돌아가는 로딩 애니메이션 */
 export const AIRPLANE_LOADING = Airplane_loading
@@ -22,3 +23,6 @@ export const WAVE_ANIMATION = Wave
 
 /**@info Wave 로딩 애니메이션 */
 export const WAVE_LOADING_ANIMATION = WaveLoading
+
+/**@info Wave 그라디언트 백그라운드 */
+export const WAVE_GRADIENT = WaveGradient

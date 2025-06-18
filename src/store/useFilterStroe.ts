@@ -1,15 +1,15 @@
-import { DetailFilterType, FilterProps } from '@/types/filter'
+import { DetailFilterType, Filter } from '@/types/filter'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 
 interface FilterStoreInterface {
   detailFilter: DetailFilterType | null
-  filterValue: FilterProps
+  filterValue: Filter
   isJustOneDay: boolean
   setIsJustOneDay: (isJustOneDay: boolean) => void
   setDetailFilter: (detailFilter: DetailFilterType | null) => void
-  setFilterValue: (filterValue: FilterProps) => void
+  setFilterValue: (filterValue: Filter) => void
 }
 
 const useFilterStore = create<FilterStoreInterface>()(
@@ -23,6 +23,7 @@ const useFilterStore = create<FilterStoreInterface>()(
         hourlyPrice: 0,
         guest: 0,
         category: '',
+        isJustOneDay: false,
       },
       isJustOneDay: false,
       setIsJustOneDay: (isJustOneDay) => {

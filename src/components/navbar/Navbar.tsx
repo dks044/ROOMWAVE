@@ -11,7 +11,7 @@ import useFilterModeStore from '@/store/useFilterModeStore'
 import useFilterStore from '@/store/useFilterStroe'
 import { WIX_FONT } from '@/constants'
 import LottieAnimation from '../LottieAnimation'
-import { WAVE_ANIMATION } from '@/constants/lottie'
+import { WAVE_ANIMATION, WAVE_GRADIENT } from '@/constants/lottie'
 import { useSession } from 'next-auth/react'
 
 export default function Navbar() {
@@ -213,12 +213,25 @@ export default function Navbar() {
       )}
 
       <div className="relative hidden grow basis-0 justify-end gap-4 align-middle md:flex">
-        <button
+        {/* <button
           type="button"
           className="my-auto overflow-hidden truncate rounded-full px-4 py-3 text-sm font-semibold hover:bg-gray-50"
         >
           당신의 공간을 등록해주세요
-        </button>
+        </button> */}
+        <div
+          className="relative my-auto h-10 w-40 overflow-hidden truncate rounded-full transition-all hover:text-lg hover:shadow-lg"
+          role="button"
+        >
+          <LottieAnimation
+            lottieAnimationRoute={WAVE_GRADIENT}
+            className="inset-0 z-0"
+          />
+          <div className="absolute inset-0 z-10 flex items-center justify-center font-semibold text-white">
+            Share your space
+          </div>
+        </div>
+
         <button
           type="button"
           onClick={() => setShowMenu((val) => !val)}

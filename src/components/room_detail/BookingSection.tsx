@@ -1,7 +1,7 @@
 'use client'
 import useFilterStore from '@/store/useFilterStroe'
 import { RoomType } from '@/types'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import dayjs from 'dayjs'
 import 'dayjs/locale/ko'
@@ -21,6 +21,11 @@ const BookingSection = ({ room }: { room: RoomType }) => {
   const onChangeGuest = (e: any) => {
     setFilterValue({ ...filterValue, guest: e?.target.value })
   }
+  const [today, setToday] = useState('')
+
+  useEffect(() => {
+    setToday(dayjs().format('YYYY-MM-DD'))
+  }, [])
 
   return (
     <div className="w-full">
@@ -39,22 +44,27 @@ const BookingSection = ({ room }: { room: RoomType }) => {
             <label className="text-xs font-semibold">체크인</label>
             <input
               type="date"
-              defaultValue={filterValue.checkIn || dayjs().format('YYYY-MM-DD')}
-              min={dayjs().format('YYYY-MM-DD')}
+              min={today}
+              max={
+                filterValue.checkOut
+                  ? dayjs(filterValue.checkOut)
+                      .subtract(1, 'day')
+                      .format('YYYY-MM-DD')
+                  : undefined
+              }
               className="mt-1 w-full rounded-md border border-gray-400 px-4 py-3 text-xs"
               onChange={onChangeCheckIn}
+              value={filterValue.checkIn}
             />
           </div>
           <div className="mt-2">
             <label className="text-xs font-semibold">체크아웃</label>
             <input
               type="date"
-              defaultValue={
-                filterValue.checkOut || dayjs().format('YYYY-MM-DD')
-              }
-              min={filterValue.checkIn || dayjs().format('YYYY-MM-DD')}
+              min={filterValue.checkIn || today}
               className="mt-1 w-full rounded-md border border-gray-400 px-4 py-3 text-xs"
               onChange={onChangeCheckOut}
+              value={filterValue.checkOut}
             />
           </div>
           <div className="mt-2">

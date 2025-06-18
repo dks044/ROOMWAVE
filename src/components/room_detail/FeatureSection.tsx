@@ -9,6 +9,7 @@ import {
   FeatureType,
 } from '@/constants'
 import { GiSadCrab } from 'react-icons/gi'
+import CalendarSection from './CalendarSection'
 
 const FeatureSection = ({ room }: { room: RoomType }) => {
   const activeFeatures = (Object.keys(featureKeyMap) as FeatureType[]).filter(
@@ -74,9 +75,7 @@ const FeatureSection = ({ room }: { room: RoomType }) => {
 
         <div className="border-b border-gray-300 px-4 py-8 leading-8 text-gray-800">
           <h1 className="mb-2 text-xl font-semibold">캘린더</h1>
-          <div className="mt-4 rounded-lg border border-gray-300 p-5">
-            캘린더가 들어갑니다
-          </div>
+          <CalendarSection />
         </div>
 
         <div className="border-b border-gray-300 px-4 py-8 leading-8 text-gray-800">

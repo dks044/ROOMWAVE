@@ -62,12 +62,19 @@ const NavbarFilter = () => {
       {/* 현재 상세 디테일이 '체크인' 이거나 '체크아웃' 일 경우 */}
       {(detailFilter === 'checkIn' || detailFilter === 'checkOut') && (
         <Calendar
+          next2Label={null}
+          prev2Label={null}
           className="mx-auto mt-8"
           onChange={onChange}
           minDate={
             detailFilter === 'checkIn'
               ? dayjs().toDate()
               : dayjs(filterValue.checkIn).add(1, 'day').toDate()
+          }
+          maxDate={
+            detailFilter === 'checkIn'
+              ? dayjs(filterValue.checkOut).add(-1, 'day').toDate()
+              : undefined
           }
           defaultValue={
             isCheckIn
