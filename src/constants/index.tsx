@@ -93,6 +93,31 @@ export const CATEGORY_DATA = [
   { title: '독립오피스', Icon: FaHome },
   { title: '가정집', Icon: MdHouse },
 ]
+
+export const CATEGORY_COLOR_MAP: Record<string, string> = {
+  파티룸: 'bg-pink-500',
+  연습실: 'bg-indigo-500',
+  촬영스튜디오: 'bg-yellow-500',
+  스터디룸: 'bg-green-500',
+  공연장: 'bg-red-500',
+  공유주방: 'bg-orange-500',
+  댄스연습실: 'bg-rose-500',
+  렌탈스튜디오: 'bg-cyan-500',
+  회의실: 'bg-blue-500',
+  라이브방송: 'bg-purple-500',
+  보컬연습실: 'bg-lime-500',
+  세미나실: 'bg-teal-500',
+  컨퍼런스: 'bg-emerald-500',
+  스몰웨딩: 'bg-fuchsia-500',
+  악기연습실: 'bg-violet-500',
+  실외촬영: 'bg-amber-500',
+  강의실: 'bg-sky-500',
+  운동시설: 'bg-gray-700',
+  갤러리: 'bg-zinc-500',
+  녹음실: 'bg-neutral-500',
+  독립오피스: 'bg-stone-500',
+  가정집: 'bg-slate-500',
+}
 export const BLUR_DATA_URL =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNctHpRPQAGVgJwRKJeuAAAAABJRU5ErkJggg=='
 

@@ -8,7 +8,7 @@ import useRoomsInfiniteScroll from '../hooks/use-Rooms-Infinite-Scroll'
 import IsError from '@/components/IsError'
 import { RoomType } from '@/types'
 import RoomItem from '@/components/RoomList'
-import { Loader } from 'lucide-react'
+import Loader from '@/components/Loader'
 
 const RoomInfiniteList = () => {
   const {
@@ -46,7 +46,11 @@ const RoomInfiniteList = () => {
         )}
       </GridLayout>
       <MapButton />
-      {(isFetching || hasNextPage || isFetchingNextPage) && <Loader />}
+      {(isFetching || hasNextPage || isFetchingNextPage) && (
+        <div className="flex w-full justify-center">
+          <Loader />
+        </div>
+      )}
       <div className="mb-10 h-40 w-full touch-none" ref={ref} />
     </>
   )
