@@ -3,6 +3,7 @@ import './globals.css'
 import NextLayout, { NextProvider } from './providers'
 import localFont from 'next/font/local'
 import AuthContext from './AuthContext'
+import KakaoScript from '@/lib/KakaoScript'
 
 export const metadata: Metadata = {
   title: '룸웨이브 - 룸을 찾아요',
@@ -30,6 +31,7 @@ export default function RootLayout({
           </AuthContext>
         </NextProvider>
       </body>
+      <KakaoScript />
     </html>
   )
 }

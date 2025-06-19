@@ -31,6 +31,8 @@ import { LuAirVent } from 'react-icons/lu'
 import { LuWifi } from 'react-icons/lu'
 import { MdOutlineMeetingRoom } from 'react-icons/md'
 
+export const DOMAIN_URL = 'https://roomwave.vercel.app'
+
 export const MAIN_SLIDES = [
   {
     title: '파티룸 찾을 땐 쿠폰 할인 받으세요!',

@@ -34,9 +34,9 @@ const Footer = () => {
         </ul>
       </div>
       <div className="mx-auto max-w-screen-xl p-4 text-[10px] text-gray-400">
-        웹사이트 제공자 : TEAM SYNTHWAVE | 이사: Ajn Jong Yun | 사업자 등록 번호
-        : 없음 | 연락처: buzz781@gmail.com | TEAM SYNTHWAVE는 통신판매 중개자로
-        Studywave 플랫폼을 통하여 게스트와 호스트 사이에 이루어지는 통신판매의
+        웹사이트 제공자 : WAVE STUDIO | 이사: Ajn Jong Yun | 사업자 등록 번호 :
+        없음 | 연락처: buzz781@gmail.com | WAVE STUDIO는 통신판매 중개자로
+        ROOMWAVE 플랫폼을 통하여 게스트와 호스트 사이에 이루어지는 통신판매의
         당사자가 아닙니다. ROOMWAVE 플랫폼을 통하여 예약된 파티룸, 스터디룸 등에
         관한 의무와 책임은 해당 서비스를 제공하는 호스트에게 있습니다.
       </div>

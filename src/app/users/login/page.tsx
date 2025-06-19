@@ -3,7 +3,7 @@ import Authform from '../components/Authform'
 const LoginPage = () => {
   return (
     <main className="flex justify-center">
-      <section className="flex flex-col">
+      <section className="flex w-full flex-col px-4 sm:w-auto sm:px-0">
         <h1 className="flex w-full justify-center border-b-2 pb-8 sm:w-[40vw] sm:pb-8">
           <div className="text-md font-semibold sm:text-lg">
             로그인 또는 회원가입

@@ -1,4 +1,5 @@
 'use client'
+import FloatingLoginButton from '@/components/FloatingLoginButton'
 import Footer from '@/components/Footer'
 import Navbar from '@/components/navbar/Navbar'
 import useFilterModeStore from '@/store/useFilterModeStore'
@@ -56,6 +57,7 @@ const NextLayout = ({ children }: Props) => {
       </div>
       {children}
       <Footer />
+      <FloatingLoginButton />
     </>
   )
 }

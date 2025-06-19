@@ -9,6 +9,7 @@ import { AiOutlineUnorderedList } from 'react-icons/ai'
 import Image from 'next/image'
 import { BLUR_DATA_URL } from '@/constants'
 import ImageListModal from './ImageListModal'
+import ShareButton from './ShareButton'
 
 const HeaderSection = ({ room }: { room: RoomType }) => {
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -19,13 +20,7 @@ const HeaderSection = ({ room }: { room: RoomType }) => {
       <aside className="flex w-full items-center justify-between px-4">
         <div className="mt-2 text-xs underline md:text-sm">{room.address}</div>
         <div className="mt-2 flex gap-2 text-xs md:text-sm">
-          <button
-            type="button"
-            className="flex items-center gap-2 rounded-lg px-2 py-1.5 hover:bg-black/10"
-          >
-            <GrShare />
-            <span className="underline">공유하기</span>
-          </button>
+          <ShareButton room={room} />
           <button
             type="button"
             className="flex items-center gap-2 rounded-lg px-2 py-1.5 hover:bg-black/10"
