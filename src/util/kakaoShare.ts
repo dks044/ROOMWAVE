@@ -22,7 +22,7 @@ export const handleKakaoShare = (room: RoomType) => {
     },
     buttons: [
       {
-        title: '숙소 보러가기',
+        title: '공간 보러가기',
         link: {
           mobileWebUrl: `${DOMAIN_URL}/rooms/${room.id}`,
           webUrl: `${DOMAIN_URL}/rooms/${room.id}`,

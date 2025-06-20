@@ -21,7 +21,7 @@ const FeatureSection = ({ room }: { room: RoomType }) => {
         <div className="flex items-center justify-between px-4">
           <div>
             <h1 className="text-lg md:text-xl">
-              {room?.user?.name ?? '사용자 님이 호스팅하는 숙소'}
+              {room?.user?.name ?? '사용자 님이 호스팅하는 공간'}
             </h1>
             <p className="mt-2 text-sm text-gray-600">
               {room?.user?.desc ?? '호스트 설명이 없습니다.'}
@@ -54,9 +54,9 @@ const FeatureSection = ({ room }: { room: RoomType }) => {
             <div className="flex items-center gap-6 px-4">
               <GiSadCrab size={24} />
               <div>
-                <div className="font-semibold">등록된 숙소 특징이 없습니다</div>
+                <div className="font-semibold">등록된 공간 특징이 없습니다</div>
                 <div className="text-sm text-gray-400">
-                  호스트가 아직 숙소의 특징을 등록하지 않았어요.
+                  호스트가 아직 공간의 특징을 등록하지 않았어요.
                 </div>
               </div>
             </div>
@@ -64,7 +64,7 @@ const FeatureSection = ({ room }: { room: RoomType }) => {
         </div>
 
         <div className="border-b border-gray-300 px-4 py-8 leading-8 text-gray-800">
-          <h1 className="mb-2 text-xl font-semibold">룸 설명</h1>
+          <h1 className="mb-2 text-xl font-semibold">공간 설명</h1>
           {room?.desc ?? '설명이 없습니다'}
         </div>
 

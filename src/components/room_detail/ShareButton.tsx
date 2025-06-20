@@ -4,12 +4,14 @@ import { RoomType } from '@/types'
 import { handleKakaoShare } from '@/util/kakaoShare'
 import { Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Fragment, useState } from 'react'
 import { AiOutlineClose, AiOutlineCopy } from 'react-icons/ai'
 import { FaInstagram } from 'react-icons/fa'
 import { GrShare } from 'react-icons/gr'
 import { MdOutlineEmail } from 'react-icons/md'
 import { RiKakaoTalkFill } from 'react-icons/ri'
+import { toast } from 'react-toastify'
 
 const ShareButton = ({ room }: { room: RoomType }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -19,6 +21,15 @@ const ShareButton = ({ room }: { room: RoomType }) => {
   }
   const openModal = () => {
     setIsOpen(true)
+  }
+
+  const handleCopyLink = () => {
+    if (navigator.clipboard && window) {
+      navigator.clipboard
+        .writeText(window.location.href)
+        .then(() => toast.success('링크 복사 완료'))
+        .catch(() => toast.error('다시 시도해주세요'))
+    }
   }
 
   return (
@@ -70,7 +81,7 @@ const ShareButton = ({ room }: { room: RoomType }) => {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    숙소 공유하기
+                    공간 공유하기
                   </Dialog.Title>
                   <div className="mt-5 flex items-start gap-4">
                     <Image
@@ -100,20 +111,29 @@ const ShareButton = ({ room }: { room: RoomType }) => {
                     <button
                       type="button"
                       className="flex items-center gap-2 rounded-lg border border-gray-300 px-6 py-4 font-semibold transition-all hover:bg-black/5"
+                      onClick={() => handleCopyLink()}
                     >
                       <AiOutlineCopy className="my-auto" />
                       링크복사
                     </button>
+                    {typeof window !== 'undefined' && (
+                      <Link
+                        href={`mailto:subject=[WaveStudio] 공간 공유하기&body=${window.location.href}`}
+                        role="button"
+                        className="flex items-center gap-2 rounded-lg border border-gray-300 px-6 py-4 font-semibold transition-all hover:bg-black/5"
+                      >
+                        <MdOutlineEmail className="my-auto" />
+                        이메일
+                      </Link>
+                    )}
                     <button
                       type="button"
                       className="flex items-center gap-2 rounded-lg border border-gray-300 px-6 py-4 font-semibold transition-all hover:bg-black/5"
-                    >
-                      <MdOutlineEmail className="my-auto" />
-                      이메일
-                    </button>
-                    <button
-                      type="button"
-                      className="flex items-center gap-2 rounded-lg border border-gray-300 px-6 py-4 font-semibold transition-all hover:bg-black/5"
+                      onClick={() =>
+                        alert(
+                          '인스타그램은 외부 공유 기능을 지원하지 않아요🙏\n링크를 복사해서 DM이나 스토리로 직접 공유해 주세요!',
+                        )
+                      }
                     >
                       <FaInstagram className="my-auto" />
                       인스타그램
