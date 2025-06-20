@@ -38,40 +38,39 @@ B2C 환경에서의 **실제 사용자를 고려한 경험 중심의 웹 플랫�
 
 ---
 
-
-
-## 🧠 프로젝트 개요
-
-> ROOMWAVE는 다양한 테마의 공간ogo=reactquery&logoColor=white)
-![Zustand](https://img.shields.io/badge/Zustand-000000?style=for-the-badge&logo=zod&logoColor=white)
-![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge)
-
-**Backend / Infra**  
-![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
-![Next.js Route Handler](https://img.shields.io/badge/Next.js%20Route%20Handler-000000?style=for-the-badge)
-![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
-
-**기타 도구**  
-![Lottie](https://img.shields.io/badge/Lottie-00C6FF?style=for-the-badge)
-![React Calendar](https://img.shields.io/badge/React%20Calendar-FC6963?style=for-the-badge)
-
----
-
-
-
 ## 🧠 프로젝트 개요
 
 > ROOMWAVE는 다양한 테마의 공간(파티룸, 회의실, 연습실 등)을  
 > 사용자들이 손쉽게 탐색하고 예약할 수 있는 **공간 기반 커뮤니티 플랫폼**입니다.
 
-해당 프로젝트는 단순한 CRUD 수준을 넘어서:
+단순한 CRUD를 넘어서, **실제 서비스 수준의 기술 설계와 사용자 경험 구현**을 목표로 기획되었습니다.
 
-- **B2C 제품 수준의 사용자 흐름 설계**
-- **검색 → 필터 → 결과 노출 → 상세 페이지 흐름 최적화**
-- **SSR, CSR을 혼합한 데이터 패칭 전략 적용**
-- **React Query 기반의 무한스크롤 / 캐싱 최적화**
+---
 
-등을 통해 **제품 수준의 UI/UX 구현 경험과 프론트엔드 시스템 설계 능력을 성장시키기 위해** 기획되었습니다.
+### ✅ 기획 의도 및 구현 목표
+
+- **B2C 제품 수준의 사용자 흐름** 설계  
+  → 검색 → 필터 → 결과 리스트 → 상세 페이지로 이어지는 **자연스러운 탐색 경험**
+
+- **프론트엔드 시스템 설계 능력 향상**  
+  → UI/UX, 상태 관리, 성능 최적화까지 고려한 **설계 기반 개발**
+
+---
+
+### 🧩 주요 기술 설계 포인트
+
+- **Route Handler + Supabase 기반 PaaS 백엔드 구성**  
+  → DB 모델링부터 OAuth 기반 인증, 세션 기반 접근 제어까지 자체 설계
+
+- **Next.js App Router 기반의 렌더링 전략 분기**  
+  → SSR / SSG / ISR / CSR 전반을 페이지 목적에 맞게 조합 적용  
+  → 코드 스플리팅, 서버 컴포넌트 vs 클라이언트 컴포넌트 분리를 통한 **렌더링 최적화**
+
+- **React Query v5 기반의 데이터 흐름 관리**  
+  → 무한스크롤, 서버 캐싱, 클라이언트 캐싱을 혼합하여 **성능 중심의 데이터 전략 적용**
+
+- **Zustand로 전역 상태를 최소한의 비용으로 관리**  
+  → 필터 상태, 모달, 인증 등 클라이언트 중심 UI 흐름 제어
 
 ---
 
