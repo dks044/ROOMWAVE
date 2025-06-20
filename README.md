@@ -2,38 +2,66 @@
 ![Image](https://github.com/user-attachments/assets/b128b90b-0e62-4f82-9515-92c368bbe32a)
 > **공간을 공유하고, 경험을 나누는 플랫폼**
 
-ROOMWAVE는 단순한 룸 렌탈 서비스가 아닌,  
-B2C 환경에서의 **실제 사용자를 고려한 경험 중심의 웹 플랫폼** 구축을 목표로 시작된 프로젝트입니다.  
+ROOMWAVE는 단순한 공간 렌탈 서비스가 아닌,  
+B2C 환경에서의 **실제 사용자를 고려한 경험 중심의 웹 플랫폼** 구축을 목표로 시작된 프로젝트입니다.
 
-프론트엔드 개발자로서 UI/UX의 가시성과 사용성을 높이는 데 집중했으며,  
-**서비스를 실제로 운영한다는 마음가짐**을 바탕으로  
-디자인, 성능, 상태 관리, 네트워크 요청, 데이터 모델링 전반에 걸쳐 세심한 설계와 구현을 진행하였습니다.
+**프론트엔드 개발자로서 UI/UX의 가시성과 사용성을 높이는 데 집중하는 한편**,  
+백엔드 영역에서는 Next.js의 Route Handler와 Supabase 기반의 PaaS 환경을 활용해  
+**인증, 데이터 저장, API 라우팅을 아우르는 풀스택 구조**를 직접 설계하고 구현하였습니다.
+
+특히 **서비스를 실제로 운영한다는 마음가짐**을 바탕으로,  
+디자인, 성능 최적화, 상태 관리, 네트워크 요청 처리, 데이터 모델링 전반에 걸쳐  
+**비즈니스 흐름과 사용자 경험을 함께 고려한 설계와 개발**을 진행했습니다.
+
 
 ---
 
 ## 🚀 기술 스택
 
 **Frontend**  
-- **Next.js 15 (App Router 기반)**  
-- **TypeScript**  
-- **TailwindCSS + shadcn/ui**  
-- **React Query v5 (TanStack)**  
-- **Zustand (전역 상태 관리)**  
-- **Axios**
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-000000?style=for-the-badge)
+![TanStack Query](https://img.shields.io/badge/ReactQuery-v5-FF4154?style=for-the-badge&logo=reactquery&logoColor=white)
+![Zustand](https://img.shields.io/badge/Zustand-000000?style=for-the-badge&logo=zod&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge)
 
 **Backend / Infra**  
-- **Prisma (ORM)**  
-- **Nextjs route Handler**
+![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
+![Next.js Route Handler](https://img.shields.io/badge/Next.js%20Route%20Handler-000000?style=for-the-badge)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
 **기타 도구**  
-- **Lottie (애니메이션)**  
-- **React Calendar**
+![Lottie](https://img.shields.io/badge/Lottie-00C6FF?style=for-the-badge)
+![React Calendar](https://img.shields.io/badge/React%20Calendar-FC6963?style=for-the-badge)
 
 ---
 
+
+
 ## 🧠 프로젝트 개요
 
-> ROOMWAVE는 다양한 테마의 룸(파티룸, 회의실, 연습실 등)을  
+> ROOMWAVE는 다양한 테마의 공간ogo=reactquery&logoColor=white)
+![Zustand](https://img.shields.io/badge/Zustand-000000?style=for-the-badge&logo=zod&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge)
+
+**Backend / Infra**  
+![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
+![Next.js Route Handler](https://img.shields.io/badge/Next.js%20Route%20Handler-000000?style=for-the-badge)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+
+**기타 도구**  
+![Lottie](https://img.shields.io/badge/Lottie-00C6FF?style=for-the-badge)
+![React Calendar](https://img.shields.io/badge/React%20Calendar-FC6963?style=for-the-badge)
+
+---
+
+
+
+## 🧠 프로젝트 개요
+
+> ROOMWAVE는 다양한 테마의 공간(파티룸, 회의실, 연습실 등)을  
 > 사용자들이 손쉽게 탐색하고 예약할 수 있는 **공간 기반 커뮤니티 플랫폼**입니다.
 
 해당 프로젝트는 단순한 CRUD 수준을 넘어서:
@@ -60,15 +88,16 @@ B2C 환경에서의 **실제 사용자를 고려한 경험 중심의 웹 플랫�
 
 ---
 
-## 🏗️ 주요 기능
+## 🤖 주요 기능
 
 - 실시간 무한스크롤 및 필터링
 - 위치, 체크인/아웃, 가격 등 상세 검색 조건 관리
 - 사용자 친화적 UI 컴포넌트 (+ shadcn 기반 커스텀)
 - 반응형 UI 및 접근성 고려
 - 지속적인 리팩토링 및 성능 최적화 중
-- 룸 지도 페이지
-- OAuth 기반 인증 및 사용자 등록
+- 룸 지도 페이지(카카오 API 활용)
+- OAuth 기반 인증 및 사용자 등록(구글, 네이버, 카카오)
+- 룸 공유하기(카카오 공유, 이메일 공유, 링크 복사하기)
 
 
 ---
