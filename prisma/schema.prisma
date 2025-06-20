@@ -14,19 +14,20 @@ datasource db {
 }
 
 model User {
-  id      String    @id     @default(uuid())
-  email   String?    @unique
-  emailVerified DateTime? @map("email_verified")
-  name    String?
-  image   String?
-  desc    String?   //설명
-  rooms   Room[]
-  createdAt DateTime @default(now())
+  id                String    @id     @default(uuid())
+  email             String?    @unique
+  emailVerified     DateTime? @map("email_verified")
+  name              String?
+  image             String?
+  desc              String?   //설명
+  rooms             Room[]
+  createdAt         DateTime @default(now())
+  phone             String?
+  address           String?
+  oauth             Boolean?   @default(false) // ✅ 소셜 로그인 유저인지 표시 (커스텀 필드)
 
-  oauth         Boolean?   @default(false) // ✅ 소셜 로그인 유저인지 표시 (커스텀 필드)
-
-  accounts      Account[]  // ✅ NextAuth 관계
-  sessions      Session[]  // ✅ NextAuth 관계
+  accounts          Account[]  // ✅ NextAuth 관계
+  sessions          Session[]  // ✅ NextAuth 관계
 }
 
 //룸 (스터디룸, 파티룸, 비엔비룸 등)

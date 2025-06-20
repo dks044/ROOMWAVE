@@ -14,12 +14,13 @@ const useNavigation = () => {
           { id: 3, title: 'FAQ', url: '/faqs' },
         ]
       : [
+          { id: 1, title: '마이페이지', url: '/users/mypage' },
+          { id: 2, title: 'FAQ', url: '/faqs' },
           {
-            id: 1,
+            id: 3,
             title: '로그아웃',
             action: () => signOut({ callbackUrl: '/' }),
           },
-          { id: 2, title: 'FAQ', url: '/faqs' },
         ]
   return { menus, router }
 }
