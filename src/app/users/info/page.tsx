@@ -3,9 +3,14 @@
 
 import useCurrentUser from '@/hooks/user/useCurrentUser'
 import { signOut } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+import UserInfoSkletonUI from './components/UserInfoSkletonUI'
 
 const UserInfoPage = () => {
+  const router = useRouter()
   const { user, isError, isSuccess, isLoading } = useCurrentUser()
+
+  if (!user) return <UserInfoSkletonUI />
 
   return (
     <main className="mx-auto mt-10 max-w-3xl px-4">
@@ -14,6 +19,7 @@ const UserInfoPage = () => {
         <button
           type="button"
           className="rounded-sm px-4 py-1.5 text-sm font-semibold underline transition-all hover:bg-black/5"
+          onClick={() => router.push('/users/edit')}
         >
           수정하기
         </button>

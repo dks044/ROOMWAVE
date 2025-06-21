@@ -31,6 +31,8 @@ import { LuAirVent } from 'react-icons/lu'
 import { LuWifi } from 'react-icons/lu'
 import { MdOutlineMeetingRoom } from 'react-icons/md'
 
+export const BRAND_COLOR = '#0366fb'
+
 export const DOMAIN_URL = 'https://roomwave.vercel.app'
 
 export const MAIN_SLIDES = [

@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 const useAuthHandle = () => {
   const { status } = useSession()
   const router = useRouter()
+  const session = useSession()
 
   const handleClickGoogle = () => {
     try {
@@ -41,7 +42,7 @@ const useAuthHandle = () => {
     }
   }, [router, status])
 
-  return { handleClickGoogle, handleClickKakao, handleClickNaver }
+  return { handleClickGoogle, handleClickKakao, handleClickNaver, session }
 }
 
 export default useAuthHandle

@@ -66,18 +66,27 @@ export const authOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     // MEMO: JWT 정보를 세션에 추가하는 함수
-    session: ({ session, token }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: token.sub, // MEMO: JWT의 sub(subject) 필드를 사용자 ID로 사용
-      },
-    }),
-    jwt: async ({ user, token }) => {
-      if (user) {
-        token.sub = user.id
+    session: async ({ session, token }) => {
+      // 여기에 DB에서 유저 정보 다시 가져와서 최신 정보 반영
+      const dbUser = await prisma.user.findUnique({
+        where: { email: token.email as string },
+      })
+
+      if (dbUser) {
+        return {
+          ...session,
+          user: {
+            id: dbUser.id,
+            name: dbUser.name,
+            email: dbUser.email,
+            address: dbUser.address,
+            phone: dbUser.phone,
+            image: dbUser.image,
+          },
+        }
       }
-      return token
+
+      return session
     },
     signIn: async ({ user, account, profile }) => {
       if (account && profile) {

@@ -28,3 +28,14 @@ export const getUser = async (): Promise<UserType | undefined> => {
     console.error('❌ getUser error:', error)
   }
 }
+
+export const updateUser = async (
+  data: Partial<UserType>,
+): Promise<UserType | undefined> => {
+  try {
+    const response = await axiosInstance.put<UserType>('/users', data)
+    return response.data
+  } catch (error) {
+    console.error('❌ updateUser error:', error)
+  }
+}

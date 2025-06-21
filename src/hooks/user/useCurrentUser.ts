@@ -13,7 +13,6 @@ const useCurrentUser = () => {
   } = useQuery({
     queryKey: ['user'],
     queryFn: getUser,
-    staleTime: 10000,
     enabled: status === 'authenticated',
   })
 

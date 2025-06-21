@@ -1,4 +1,5 @@
 'use client'
+import LoadingModal from '@/components/LoadingModal'
 import useAuthHandle from '@/hooks/auth/useAuthHandle'
 import { useSession } from 'next-auth/react'
 import React from 'react'
@@ -7,8 +8,12 @@ import { RiKakaoTalkFill } from 'react-icons/ri'
 import { SiNaver } from 'react-icons/si'
 
 const Authform = () => {
-  const { handleClickGoogle, handleClickKakao, handleClickNaver } =
+  const { handleClickGoogle, handleClickKakao, handleClickNaver, session } =
     useAuthHandle()
+
+  if (session.status === 'loading') {
+    return <LoadingModal show={true} />
+  }
 
   return (
     <div className="flex flex-col gap-2">
