@@ -22,7 +22,7 @@ const HeaderSection = ({ room }: { room: RoomType }) => {
         <div className="mt-2 text-xs underline md:text-sm">{room.address}</div>
         <div className="mt-2 flex gap-2 text-xs md:text-sm">
           <ShareButton room={room} />
-          <LikeButton />
+          <LikeButton room={room} />
         </div>
       </aside>
       <section className="relative mt-6">

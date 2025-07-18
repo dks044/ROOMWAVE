@@ -19,7 +19,16 @@ export interface RoomType {
   hasAirCondition: boolean
   hasWifi: boolean
   hasFreeParking: boolean
+  likes?: LikeType[]
 }
+
+export interface LikeType {
+  id: number
+  roomId: number
+  userId: number
+  createdAt: string
+}
+
 export interface NavMenuItem {
   id: number
   title: string
