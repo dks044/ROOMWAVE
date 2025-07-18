@@ -1,5 +1,4 @@
 'use client'
-import Loader from '@/components/Loader'
 import useUserForm from '@/hooks/user/useUserForm'
 import React from 'react'
 import UserEditFormSkletonUI from './UserEditFormSkletonUI'

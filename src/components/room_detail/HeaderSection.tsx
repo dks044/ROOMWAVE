@@ -10,6 +10,7 @@ import Image from 'next/image'
 import { BLUR_DATA_URL } from '@/constants'
 import ImageListModal from './ImageListModal'
 import ShareButton from './ShareButton'
+import LikeButton from '../LikeButton'
 
 const HeaderSection = ({ room }: { room: RoomType }) => {
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -21,13 +22,7 @@ const HeaderSection = ({ room }: { room: RoomType }) => {
         <div className="mt-2 text-xs underline md:text-sm">{room.address}</div>
         <div className="mt-2 flex gap-2 text-xs md:text-sm">
           <ShareButton room={room} />
-          <button
-            type="button"
-            className="flex items-center gap-2 rounded-lg px-2 py-1.5 hover:bg-black/10"
-          >
-            <CiHeart />
-            <span className="underline">저장하기</span>
-          </button>
+          <LikeButton />
         </div>
       </aside>
       <section className="relative mt-6">
