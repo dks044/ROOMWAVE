@@ -1,0 +1,51 @@
+export const MOCK_COMMENTS = [
+  {
+    id: 1,
+    name: '사용자1',
+    createdAt: '2025-07-20',
+    imageUrl: 'https://i.pravatar.cc/300?img=1',
+    comment: '이건 테스트용 댓글입니다. 댓글 기능을 확인해보세요.',
+  },
+  {
+    id: 2,
+    name: '사용자2',
+    createdAt: '2025-07-19',
+    imageUrl: 'https://i.pravatar.cc/300?img=2',
+    comment: '정말 유용한 정보네요. 감사합니다!',
+  },
+  {
+    id: 3,
+    name: '사용자3',
+    createdAt: '2025-07-18',
+    imageUrl: 'https://i.pravatar.cc/300?img=3',
+    comment: '혹시 이 부분 다시 설명해주실 수 있을까요?',
+  },
+  {
+    id: 4,
+    name: '사용자4',
+    createdAt: '2025-07-17',
+    imageUrl: 'https://i.pravatar.cc/300?img=4',
+    comment: '좋은 글 감사합니다. 잘 보고 갑니다~',
+  },
+  {
+    id: 5,
+    name: '사용자5',
+    createdAt: '2025-07-16',
+    imageUrl: 'https://i.pravatar.cc/300?img=5',
+    comment: '프론트엔드 관련 질문이 있는데 답변 가능할까요?',
+  },
+  {
+    id: 6,
+    name: '사용자6',
+    createdAt: '2025-07-15',
+    imageUrl: 'https://i.pravatar.cc/300?img=6',
+    comment: '저도 비슷한 경험이 있었어요. 공감됩니다.',
+  },
+  {
+    id: 7,
+    name: '사용자7',
+    createdAt: '2025-07-14',
+    imageUrl: 'https://i.pravatar.cc/300?img=7',
+    comment: '이 프로젝트 정말 멋지네요. 응원합니다!',
+  },
+]

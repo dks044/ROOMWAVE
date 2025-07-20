@@ -29,6 +29,20 @@ model User {
   accounts          Account[]  // ✅ NextAuth 관계
   sessions          Session[]  // ✅ NextAuth 관계
   likes             Like[]
+  comments          Comment[]
+}
+
+model Comment {
+  id                Int           @id    @default(autoincrement())
+  createdAt         DateTime      @default(now())
+  body              String
+  roomId            Int
+  userId            String
+
+
+  User User[]
+
+  Room Room[]
 }
 
 model Like {
@@ -38,6 +52,7 @@ model Like {
   roomId            Int
   room              Room        @relation(fields: [roomId], references: [id], onDelete: Cascade)
   user              User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId, roomId])
 }
 
 //룸 (스터디룸, 파티룸, 비엔비룸 등)
@@ -64,6 +79,7 @@ model Room {
   createdAt         DateTime    @default(now())
   updatedAt         DateTime    @updatedAt @default(now())
   likes             Like[]
+  comments          Comment[]
 }
 
 model Faq {

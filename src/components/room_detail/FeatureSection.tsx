@@ -78,12 +78,12 @@ const FeatureSection = ({ room }: { room: RoomType }) => {
           <CalendarSection />
         </div>
 
-        <div className="border-b border-gray-300 px-4 py-8 leading-8 text-gray-800">
+        {/* <div className="border-b border-gray-300 px-4 py-8 leading-8 text-gray-800">
           <h1 className="mb-2 text-xl font-semibold">후기</h1>
           <div className="mt-4 rounded-lg border border-gray-300 p-5">
             후기가 들어갑니다
           </div>
-        </div>
+        </div> */}
       </div>
       <BookingSection room={room} />
     </section>
