@@ -20,6 +20,7 @@ export interface RoomType {
   hasWifi: boolean
   hasFreeParking: boolean
   likes?: LikeType[]
+  comments?: CommentType[]
 }
 
 export interface LikeType {
@@ -51,6 +52,24 @@ export interface UserType {
   accounts: Account[]
   address?: string
   phone?: string
+  comments?: CommentType[]
+}
+
+export interface CommentType {
+  id: number
+  createdAt: string
+  roomId: number
+  userId: string
+  body: string
+  room: RoomType
+  user: UserType
+}
+
+export interface CommentApiType {
+  totalCount: number
+  data: CommentType[]
+  page?: number
+  totalPage?: number
 }
 
 export interface FaqType {

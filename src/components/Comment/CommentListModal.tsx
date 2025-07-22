@@ -1,20 +1,27 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { MOCK_COMMENTS } from '@/constants/mock'
+import useCommentsScroll from '@/hooks/comments/useCommentsScroll'
+import { CommentType } from '@/types'
 import { Dialog, Transition } from '@headlessui/react'
 
-import { Fragment } from 'react'
+import React, { Fragment } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
+import Loader from '../Loader'
 
 interface CommentListModalProps {
   isOpen: boolean
   closeModal: () => void
+  roomId: number
 }
 
 export default function CommentListModal({
   isOpen,
   closeModal,
+  roomId,
 }: CommentListModalProps) {
+  const { comments, hasNextPage, isFetching, infiniteRef } =
+    useCommentsScroll(roomId)
+
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -56,35 +63,47 @@ export default function CommentListModal({
                   >
                     후기 전체보기
                   </Dialog.Title>
-                  <h1 className="mb-2 mt-4 text-xl font-semibold">
-                    후기 248개
-                  </h1>
+
                   <div className="mx-auto mb-10 mt-8 flex max-w-lg flex-col gap-8">
-                    {MOCK_COMMENTS?.slice(0, 6)?.map((comment) => (
-                      <div key={comment?.id} className="flex flex-col gap-2">
-                        <div className="flex items-center gap-2">
-                          <img
-                            src={comment?.imageUrl || '/images/avater.png'}
-                            alt="profile img"
-                            width={50}
-                            height={50}
-                            className="rounded-full"
-                          />
-                          <div>
-                            <h1 className="font-semibold">
-                              {comment?.name ?? '-'}
-                            </h1>
-                            <div className="text-xs text-gray-500">
-                              {comment?.createdAt}
+                    {comments?.pages?.map((page, index) => (
+                      <React.Fragment key={index}>
+                        {page.data.map((comment: CommentType) => (
+                          <div
+                            key={comment?.id}
+                            className="flex flex-col gap-2"
+                          >
+                            <div className="flex items-center gap-2">
+                              <img
+                                src={
+                                  comment?.user?.image || '/images/avater.png'
+                                }
+                                alt="profile img"
+                                width={50}
+                                height={50}
+                                className="rounded-full"
+                              />
+                              <div>
+                                <h1 className="font-semibold">
+                                  {comment?.user?.name ?? '-'}
+                                </h1>
+                                <div className="text-xs text-gray-500">
+                                  {comment?.createdAt}
+                                </div>
+                              </div>
+                            </div>
+                            <div className="max-w-lg text-gray-600">
+                              {comment?.body}
                             </div>
                           </div>
-                        </div>
-                        <div className="max-w-lg text-gray-600">
-                          {comment?.comment}
-                        </div>
-                      </div>
+                        ))}
+                      </React.Fragment>
                     ))}
                   </div>
+                  {(hasNextPage || isFetching) && <Loader className="mt-8" />}
+                  <div
+                    ref={infiniteRef}
+                    className="z-10 mb-10 h-10 w-full touch-none"
+                  />
                 </Dialog.Panel>
               </Transition.Child>
             </div>
