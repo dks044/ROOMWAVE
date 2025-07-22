@@ -9,7 +9,13 @@ const Comment = ({ room }: { room: RoomType }) => {
 
   return (
     <div className="border-b border-gray-300 px-4 py-8">
-      <CommentList comments={comments} isLoading={isLoading} roomId={room.id} />
+      {comments && (
+        <CommentList
+          comments={comments}
+          isLoading={isLoading}
+          roomId={room.id}
+        />
+      )}
       <CommentForm room={room} refetch={refetch} />
     </div>
   )
