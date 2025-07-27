@@ -3,6 +3,7 @@
 import { BLUR_DATA_URL } from '@/constants'
 import { RoomType } from '@/types'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { RiCloseCircleLine } from 'react-icons/ri'
 
 export default function SelectedRoom({
@@ -12,6 +13,7 @@ export default function SelectedRoom({
   selectedRoom: RoomType | null
   setSelectedRoom: React.Dispatch<React.SetStateAction<RoomType | null>>
 }) {
+  const router = useRouter()
   return (
     <div className="fixed inset-x-0 bottom-20 z-10 mx-auto w-full max-w-xs rounded-lg bg-white shadow md:max-w-sm">
       {selectedRoom && (
@@ -29,9 +31,10 @@ export default function SelectedRoom({
               width={383}
               height={383}
               alt="room image"
-              className="rounded-t-lg"
+              className="cursor-pointer rounded-t-lg"
               placeholder="blur"
               blurDataURL={BLUR_DATA_URL}
+              onClick={() => router.push(`/rooms/${selectedRoom.id}`)}
             />
           </div>
           <div className="rounded-b-lg bg-white p-4 font-semibold">

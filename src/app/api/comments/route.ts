@@ -103,3 +103,23 @@ export async function POST(req: Request) {
     )
   }
 }
+
+export async function DELETE(req: Request) {
+  const { searchParams } = new URL(req.url)
+  const commentId = searchParams.get('commentId')
+
+  if (!commentId) {
+    return NextResponse.json({ error: 'No commentId' }, { status: 400 })
+  }
+
+  const session = await getServerSession(authOptions)
+  if (!session?.user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  const deleted = await prisma.comment.delete({
+    where: { id: parseInt(commentId) },
+  })
+
+  return NextResponse.json(deleted)
+}

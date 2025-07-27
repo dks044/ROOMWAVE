@@ -55,3 +55,7 @@ export const fetchCommentInfiniteScroll = async (
 
   return data as CommentApiType
 }
+
+export const deleteCommentByCommentId = async (commentId: number) => {
+  return await axiosInstance.delete(`/comments?commentId=${commentId}`)
+}

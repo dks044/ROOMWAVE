@@ -14,6 +14,7 @@ const Comment = ({ room }: { room: RoomType }) => {
           comments={comments}
           isLoading={isLoading}
           roomId={room.id}
+          refetch={refetch}
         />
       )}
       <CommentForm room={room} refetch={refetch} />

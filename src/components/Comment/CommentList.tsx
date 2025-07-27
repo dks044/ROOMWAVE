@@ -1,22 +1,30 @@
 'use client'
 /* eslint-disable @next/next/no-img-element */
-import { MOCK_COMMENTS } from '@/constants/mock'
-import { useState } from 'react'
+import { useState, Fragment } from 'react'
 import { BiChevronRight } from 'react-icons/bi'
 import CommentListModal from './CommentListModal'
-import { CommentApiType, CommentType, RoomType } from '@/types'
+import { CommentApiType } from '@/types'
 import Loader from '../Loader'
+import { useSession } from 'next-auth/react'
+
+import { AiOutlineClose } from 'react-icons/ai'
+import CommentDeleteModal from './CommentDeleteModal'
 
 const CommentList = ({
   comments,
   isLoading,
   roomId,
+  refetch,
 }: {
   comments: CommentApiType
   isLoading: boolean
   roomId: number
+  refetch: () => void
 }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false) //댓글 리스트 모달
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false) // 댓글 삭제모달
+  const [targetCommentId, setTargetCommentId] = useState<number | null>(null)
+  const session = useSession()
 
   const closeModal = () => {
     setIsOpen(false)
@@ -35,33 +43,51 @@ const CommentList = ({
           <Loader className="md:col-span-2" />
         ) : (
           comments?.data?.slice(0, 6)?.map((comment) => (
-            <div key={comment?.id} className="flex flex-col gap-2">
-              <div className="flex items-center gap-2">
-                <img
-                  src={comment?.user?.image || '/images/avater.png'}
-                  alt="profile img"
-                  width={50}
-                  height={50}
-                  className="rounded-full"
-                />
-                <div>
-                  <h1 className="font-semibold">
-                    {comment?.user?.name ?? '-'}
-                  </h1>
-                  <div className="text-xs text-gray-500">
-                    {comment?.createdAt}
+            <Fragment key={comment?.id}>
+              <div className="relative flex flex-col gap-2">
+                {session?.data?.user.id === comment?.userId && (
+                  <div className="absolute right-0 top-0 cursor-pointer text-gray-400 transition-all hover:text-gray-600 focus:text-gray-600">
+                    <AiOutlineClose
+                      onClick={() => {
+                        setTargetCommentId(comment.id)
+                        setIsDeleteModalOpen(true)
+                      }}
+                    />
+                  </div>
+                )}
+                <div className="flex items-center gap-2">
+                  <img
+                    src={comment?.user?.image || '/images/avater.png'}
+                    alt="profile img"
+                    width={50}
+                    height={50}
+                    className="rounded-full"
+                  />
+                  <div>
+                    <h1 className="font-semibold">
+                      {comment?.user?.name ?? '-'}
+                    </h1>
+                    <div className="text-xs text-gray-500">
+                      {comment?.createdAt}
+                    </div>
                   </div>
                 </div>
+                <div className="max-w-md text-gray-600">{comment?.body}</div>
+                <button
+                  type="button"
+                  className="flex items-center justify-start gap-1 font-semibold underline"
+                  onClick={openModal}
+                >
+                  더보기 <BiChevronRight className="text-xl" />
+                </button>
               </div>
-              <div className="max-w-md text-gray-600">{comment?.body}</div>
-              <button
-                type="button"
-                className="flex items-center justify-start gap-1 font-semibold underline"
-                onClick={openModal}
-              >
-                더보기 <BiChevronRight className="text-xl" />
-              </button>
-            </div>
+              <CommentDeleteModal
+                closeModal={() => setIsDeleteModalOpen(false)}
+                isOpen={isDeleteModalOpen}
+                commentId={targetCommentId as number}
+                refetch={refetch}
+              />
+            </Fragment>
           ))
         )}
       </div>
