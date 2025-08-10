@@ -1,5 +1,4 @@
 'use client'
-import { Session } from 'next-auth'
 import Link from 'next/link'
 import {
   AiOutlineUser,
@@ -10,7 +9,7 @@ import {
   AiOutlineCalendar,
 } from 'react-icons/ai'
 
-const MyPageSection = ({ session }: { session: Session }) => {
+const MyPageSection = () => {
   return (
     <section className="mb-20 mt-12 grid gap-4 sm:grid-cols-3">
       <Link

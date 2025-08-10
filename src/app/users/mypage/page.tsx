@@ -21,7 +21,7 @@ const MyPage = async () => {
           </div>
         </div>
       </header>
-      <MyPageSection session={session} />
+      <MyPageSection />
     </main>
   )
 }

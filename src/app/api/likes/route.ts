@@ -3,10 +3,57 @@ import { getServerSession } from 'next-auth'
 import { NextResponse } from 'next/server'
 import prisma from '@/lib/prismadb'
 
+export async function GET(req: Request) {
+  try {
+    const session = await getServerSession(authOptions)
+    const { searchParams } = new URL(req.url)
+    const page = searchParams.get('page') as string
+    const limit = searchParams.get('limit') as string
+    const skipPage = parseInt(page) - 1
+
+    if (!session?.user) {
+      return NextResponse.json(
+        {
+          error: 'unauthorized user',
+        },
+        { status: 401 },
+      )
+    }
+    const count = await prisma.like.count({
+      where: {
+        userId: session?.user?.id,
+      },
+    })
+
+    const likes = await prisma.like.findMany({
+      orderBy: { createdAt: 'desc' },
+      where: {
+        userId: session?.user.id,
+      },
+      include: {
+        room: true,
+      },
+      skip: skipPage * parseInt(limit),
+      take: parseInt(limit),
+    })
+
+    return NextResponse.json({
+      page: parseInt(page),
+      data: likes,
+      totalCount: count,
+      totalPage: Math.ceil(count / parseInt(limit)),
+    })
+  } catch (error) {
+    return NextResponse.json(
+      { error: `server error: ${error}` },
+      { status: 500 },
+    )
+  }
+}
+
 export async function POST(req: Request) {
   try {
     const session = await getServerSession(authOptions)
-    console.log('[세션 유저]', session?.user) // 이거 꼭 찍어봐라
     if (!session?.user) {
       return NextResponse.json(
         {

@@ -41,11 +41,11 @@ export async function GET(req: Request) {
       where: {
         id: parseInt(id),
       },
-      include: {
-        likes: {
-          where: session ? { userId: session?.user?.id } : {},
-        },
-      },
+      include: session
+        ? {
+            likes: { where: { userId: session.user.id }, select: { id: true } },
+          }
+        : { likes: false },
     })
     return NextResponse.json(room, {
       status: 200,

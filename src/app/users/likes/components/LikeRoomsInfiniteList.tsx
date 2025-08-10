@@ -1,27 +1,29 @@
 'use client'
+
+import useInfiniteScroll from '@/hooks/useInfiniteScroll'
+import useLikesRoomsScroll from '../hooks/use-Likes-Rooms-Scroll'
+import IsError from '@/components/IsError'
 import GridLayout from '@/components/GridLayout'
 import SkeletonCards from '@/components/skeleton/SkeletonCards'
 import React from 'react'
-import MapButton from './MapButton'
-import useRoomsScroll from '@/hooks/room/useRoomsScroll'
-import IsError from '@/components/IsError'
-import { RoomType } from '@/types'
 import RoomItem from '@/components/RoomList'
+import { LikeType, RoomType } from '@/types'
+import MapButton from '@/app/(home)/components/MapButton'
 import Loader from '@/components/Loader'
-import useInfiniteScroll from '@/hooks/useInfiniteScroll'
 
-const RoomInfiniteList = () => {
+const LikeRoomsInfiniteList = ({ userId }: { userId: string }) => {
   const {
-    rooms,
-    isFetching,
     fetchNextPage,
-    isFetchingNextPage,
     hasNextPage,
     isError,
+    isFetching,
+    isFetchingNextPage,
     isLoading,
-  } = useRoomsScroll()
+    isSuccess,
+    likeRooms,
+  } = useLikesRoomsScroll(userId)
 
-  const { ref, pageRef, isPageEnd } = useInfiniteScroll({
+  const { ref, isPageEnd, pageRef } = useInfiniteScroll({
     hasNextPage,
     fetchNextPage,
   })
@@ -31,29 +33,28 @@ const RoomInfiniteList = () => {
   }
 
   return (
-    <>
+    <section className="px-4">
       <GridLayout>
         {isLoading || isFetching ? (
-          <SkeletonCards />
+          <SkeletonCards count={6} />
         ) : (
-          rooms?.pages?.map((page, index) => (
+          likeRooms?.pages?.map((page, index) => (
             <React.Fragment key={index}>
-              {page?.data?.map((room: RoomType) => (
-                <RoomItem room={room} key={room.id} />
+              {page?.data?.map((likeRoom: LikeType) => (
+                <RoomItem room={likeRoom.room} key={likeRoom.id} />
               ))}
             </React.Fragment>
           ))
         )}
       </GridLayout>
-      <MapButton />
-      {(isFetching || hasNextPage || isFetchingNextPage) && (
+      {isFetchingNextPage && (
         <div className="flex w-full justify-center">
           <Loader />
         </div>
       )}
       <div className="mb-10 h-40 w-full touch-none" ref={ref} />
-    </>
+    </section>
   )
 }
 
-export default RoomInfiniteList
+export default LikeRoomsInfiniteList

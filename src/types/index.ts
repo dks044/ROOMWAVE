@@ -28,6 +28,7 @@ export interface LikeType {
   roomId: number
   userId: number
   createdAt: string
+  room: RoomType
 }
 
 export interface NavMenuItem {

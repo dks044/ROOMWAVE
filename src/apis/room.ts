@@ -19,6 +19,19 @@ export const getRoomsForScroll = async ({ pageParam = 1 }) => {
   return response.data
 }
 
+export const getLikesRoomsForScroll = async ({ pageParam = 1 }) => {
+  const response = await axiosInstance('/likes', {
+    params: {
+      limit: 12,
+      page: pageParam,
+    },
+  })
+
+  if (!response) throw new Error('Failed to fetch rooms')
+
+  return response.data
+}
+
 export const getRooms = async () => {
   const response = await await axiosInstance('/rooms')
   return response.data as RoomType[]

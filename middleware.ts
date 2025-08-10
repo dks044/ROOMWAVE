@@ -15,5 +15,5 @@ export default withAuth(
 )
 
 export const config = {
-  matcher: ['/users/mypage', '/users/info', '/users/edit'],
+  matcher: ['/users/mypage', '/users/info', '/users/edit', '/users/likes'],
 }
