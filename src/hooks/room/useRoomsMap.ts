@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 
 const useRoomsMap = () => {
   const { isSuccess, data: rooms } = useQuery({
-    queryKey: [ROOM.map],
+    queryKey: ROOM.map,
     queryFn: getRooms,
     staleTime: 10000,
   })

@@ -8,6 +8,9 @@ import React, { Fragment } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import Loader from '../Loader'
 
+import dayjs from 'dayjs'
+import 'dayjs/locale/ko'
+
 interface CommentListModalProps {
   isOpen: boolean
   closeModal: () => void
@@ -87,7 +90,9 @@ export default function CommentListModal({
                                   {comment?.user?.name ?? '-'}
                                 </h1>
                                 <div className="text-xs text-gray-500">
-                                  {comment?.createdAt}
+                                  {dayjs(comment?.createdAt).format(
+                                    'YYYY-MM-DD HH:MM:ss',
+                                  )}
                                 </div>
                               </div>
                             </div>

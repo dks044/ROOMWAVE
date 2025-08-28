@@ -1,6 +1,7 @@
 import { SERVER_SIDE_API_URL } from '@/constants'
 import axiosInstance from '@/lib/axios'
 import { CommentApiType, RoomType, UserType } from '@/types'
+import axios from 'axios'
 /**
  * @info 모든FAQ를 다 가져옴
  */
@@ -43,6 +44,19 @@ export const updateUser = async (
 export const fetchComment = async (roomId: string | number) => {
   const { data } = await axiosInstance.get(`/comments?roomId=${roomId}&limit=6`)
   return data as CommentApiType
+}
+
+/**@info 해당 사용자가 작성한 후기들 */
+export const fetchCommentByUser = async ({ pageParam = 1 }) => {
+  const { data } = await axiosInstance.get(
+    `/comments?my=true&page=${pageParam}`,
+    {
+      params: {
+        limit: 12,
+      },
+    },
+  )
+  return data
 }
 
 export const fetchCommentInfiniteScroll = async (

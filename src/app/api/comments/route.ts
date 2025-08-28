@@ -10,11 +10,17 @@ export async function GET(req: Request) {
     const roomId = searchParams.get('roomId') as string
     const limit = searchParams.get('limit') as string
     const page = searchParams.get('page') as string
+    const my = searchParams.get('my') as string
+    const session = await getServerSession(authOptions)
 
     // page 값이 있는 경우 => 댓글 모달 리스트 무한 스크롤
     if (page) {
       const count = await prisma.comment.count({
-        where: { roomId: parseInt(roomId) },
+        where: {
+          roomId: roomId ? parseInt(roomId) : {},
+          // 사용자 댓글을 가져온다 (마이페이지-내가 쓴 댓글보기)
+          userId: my ? session?.user?.id : {},
+        },
       })
 
       const skipPage = parseInt(page) - 1
@@ -23,6 +29,7 @@ export async function GET(req: Request) {
         take: parseInt(limit),
         where: {
           roomId: roomId ? parseInt(roomId) : {},
+          userId: my ? session?.user?.id : {},
         },
         skip: skipPage * parseInt(limit),
         include: {
@@ -44,7 +51,10 @@ export async function GET(req: Request) {
     } else {
       // page 값이 없는 경우, limit 값 기준으로 최신 데이터 가져오기
       const count = await prisma.comment.count({
-        where: { roomId: parseInt(roomId) },
+        where: {
+          roomId: roomId ? parseInt(roomId) : {},
+          userId: my ? session?.user?.id : {},
+        },
       })
 
       const comments = await prisma.comment.findMany({
@@ -52,6 +62,7 @@ export async function GET(req: Request) {
         take: parseInt(limit),
         where: {
           roomId: roomId ? parseInt(roomId) : {},
+          userId: my ? session?.user?.id : {},
         },
         include: {
           User: true,

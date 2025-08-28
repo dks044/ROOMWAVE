@@ -1,7 +1,7 @@
 import { API_URL } from '@/constants'
 import axiosInstance from '@/lib/axios'
 import { RoomType } from '@/types'
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
 
 /**
  * @info 모든방을 다 가져옴 by 무한스크롤

@@ -1,11 +1,11 @@
-import { getRoomsForScroll } from '@/apis/room'
+import { fetchCommentByUser } from '@/apis'
 import { ROOM } from '@/query/key'
 import { useInfiniteQuery } from '@tanstack/react-query'
 
-/**@info 무한스크롤 룸 리스트 */
-const useRoomsScroll = () => {
+/**@info 사용자가 사용한 후기를 무한스크롤로 패치 */
+const useUserCommentsScroll = (userId: string) => {
   const {
-    data: rooms,
+    data: comments,
     isFetching,
     fetchNextPage,
     isFetchingNextPage,
@@ -14,18 +14,17 @@ const useRoomsScroll = () => {
     isLoading,
     isSuccess,
   } = useInfiniteQuery({
-    queryKey: ROOM.all,
-    queryFn: getRoomsForScroll,
-    getNextPageParam: (lastPage, allPages) => {
-      return lastPage.length === 0 ? undefined : allPages.length + 1
-    },
+    queryKey: ROOM.user_comments(userId),
+    queryFn: fetchCommentByUser,
+    getNextPageParam: (lastPage: any) =>
+      lastPage.data?.length > 0 ? lastPage.page + 1 : undefined,
     initialPageParam: 1,
     staleTime: 10000,
     refetchOnWindowFocus: false,
   })
 
   return {
-    rooms,
+    comments,
     isFetching,
     fetchNextPage,
     isFetchingNextPage,
@@ -36,4 +35,4 @@ const useRoomsScroll = () => {
   }
 }
 
-export default useRoomsScroll
+export default useUserCommentsScroll

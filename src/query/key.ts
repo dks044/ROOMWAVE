@@ -10,5 +10,6 @@ export const ROOM = {
   comments: (roomId: number | string) => ['room_comments', roomId] as const,
   comments_infinite: (roomId: number | string) =>
     ['room_comments_infinite', roomId] as const,
-  like_rooms: (userId: string) => ['room_user_likes', userId] as const,
+  user_likes: (userId: string) => ['room_user_likes', userId] as const,
+  user_comments: (userId: string) => ['room_user_comments', userId] as const,
 }

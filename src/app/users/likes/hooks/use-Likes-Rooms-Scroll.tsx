@@ -14,7 +14,7 @@ const useLikesRoomsScroll = (userId: string) => {
     isLoading,
     isSuccess,
   } = useInfiniteQuery({
-    queryKey: [ROOM.like_rooms(userId)],
+    queryKey: ROOM.user_likes(userId),
     queryFn: getLikesRoomsForScroll,
     getNextPageParam: (lastPage, allPages) => {
       //return lastPage.length === 0 ? undefined : allPages.length + 1

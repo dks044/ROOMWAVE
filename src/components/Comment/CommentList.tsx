@@ -10,6 +10,9 @@ import { useSession } from 'next-auth/react'
 import { AiOutlineClose } from 'react-icons/ai'
 import CommentDeleteModal from './CommentDeleteModal'
 
+import dayjs from 'dayjs'
+import 'dayjs/locale/ko'
+
 const CommentList = ({
   comments,
   isLoading,
@@ -68,7 +71,7 @@ const CommentList = ({
                       {comment?.user?.name ?? '-'}
                     </h1>
                     <div className="text-xs text-gray-500">
-                      {comment?.createdAt}
+                      {dayjs(comment?.createdAt).format('YYYY-MM-DD HH:MM:ss')}
                     </div>
                   </div>
                 </div>
